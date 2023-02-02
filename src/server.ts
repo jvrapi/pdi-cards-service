@@ -1,21 +1,18 @@
-import 'dotenv/config';
-import 'reflect-metadata';
 import './container';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { CardsResolver } from '@application/resolvers/cards-resolver';
-import { SetsResolver } from '@application/resolvers/sets-resolver';
 import { resolve } from 'node:path';
+import { container } from 'tsyringe';
 import { buildSchema } from 'type-graphql';
-import { Container } from 'typedi';
-import { ErrorInterceptor as formatError } from '@application/middlewares/error-interceptor';
-
+import { ErrorInterceptor as formatError } from './application/middlewares/error-interceptor';
+import { SetsResolver } from './application/resolvers/sets-resolver';
 
 export const createApolloServer = async () => {
   const schema = await buildSchema({
-    resolvers: [CardsResolver, SetsResolver],
-    emitSchemaFile: resolve(__dirname, './schema.gql'),
-    container: Container,
+    resolvers: [SetsResolver],
+    container: {
+      get: (cls) => container.resolve(cls)
+    },
   });
 
   const server = new ApolloServer({
@@ -23,10 +20,7 @@ export const createApolloServer = async () => {
     formatError,
   });
 
-  const { url } = await startStandaloneServer(server, {
-    context: async ({ req }) => ({ token: req.headers.authorization, user: { id: '' } }),
-
-  });
+  const { url } = await startStandaloneServer(server);
 
   console.log(`🚀 Server ready on ${url} 🚀`);
 

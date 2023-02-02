@@ -1,8 +1,19 @@
 import { Set } from '@application/entities/set';
-import { SetsRepository } from '@application/repositories/sets-repository';
+import { Pagination, SetsRepository } from '@application/repositories/sets-repository';
+import { prisma } from '..';
+import { PrismaSetsMapper } from '../mappers/prisma-sets-mapper';
 
 export class PrismaSetsRepository implements SetsRepository {
-  findAll(): Promise<Set[]> {
-    throw new Error('Method not implemented.');
+  async findAll({limit,page}: Pagination): Promise<Set[]> {
+    const sets =  await prisma.set.findMany({
+      take: limit,
+      skip: (page - 1) * limit,
+    })
+
+    return sets.map(PrismaSetsMapper.toDomain)
+  }
+
+  count(): Promise<number> {
+    return prisma.set.count()
   }
 }

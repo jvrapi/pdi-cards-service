@@ -1,6 +1,5 @@
-import { Set } from '@application/entities/set';
-import { Set as ApiSet } from '@api/entities/set';
 import { Set as RawSet } from '@prisma/client';
+import { Set } from '../../../../application/entities/set';
 
 export class PrismaSetsMapper {
   static toPrisma(set: Set) {
@@ -22,7 +21,8 @@ export class PrismaSetsMapper {
         type: raw.type,
         releasedAt: raw.releasedAt,
         isDigital: raw.isDigital,
-        isFoilOnly: raw.isFoilOnly
+        isFoilOnly: raw.isFoilOnly,
+        iconUri: ''
       },
       raw.id
     );
