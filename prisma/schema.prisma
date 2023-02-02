@@ -1,0 +1,60 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Set {
+  id         String   @id @default(uuid())
+  code       String
+  name       String
+  releasedAt String   @map("released_at")
+  type       String
+  isDigital  Boolean  @map("is_digital")
+  isFoilOnly Boolean  @map("is_foil_only")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @map("updated_at")
+  cards      Card[]
+
+  @@index([code])
+  @@map("sets")
+}
+
+model Card {
+  id               String   @id @default(uuid())
+  setId            String   @map("set_id")
+  name             String
+  language         String
+  layout           String?
+  manaCost         String?  @map("mana_cost")
+  cmc              Decimal?
+  typeLine         String?  @map("type_line")
+  loyalty          String?
+  collectionId     String?  @map("collection_id")
+  frame            String?
+  securityStamp    String?  @map("security_stamp")
+  borderColor      String?  @map("border_color")
+  effectText       String?  @map("effect_text") @db.LongText
+  flavorText       String?  @map("flavor_text") @db.LongText
+  rarity           String?
+  isReserved       Boolean? @map("is_reserved")
+  isReprint        Boolean? @map("is_reprint")
+  isVariant        Boolean? @map("is_variant")
+  isFoundInBooster Boolean? @map("is_found_in_booster")
+  isStorySpotlight Boolean? @map("is_story_spotlight")
+  colors           Json
+  formats          Json
+  versions         Json
+  faceOfId         String?  @map("face_of_id") // id da "carta principal". Ou seja, ela é uma face de uma outra carta
+  face             Card?    @relation("faces", fields: [faceOfId], references: [id])
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @default(now()) @map("updated_at")
+  set              Set      @relation(fields: [setId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  faces            Card[]   @relation("faces")
+
+  @@map("cards")
+}

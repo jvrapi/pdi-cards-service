@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2018",                             
+    "module": "commonjs", 
+    "lib": ["es2018", "esnext.asynciterable"],                          
+    "resolveJsonModule": true,                   
+    "esModuleInterop": true,                        
+    "forceConsistentCasingInFileNames": true,       
+    "strict": true,
+    "strictPropertyInitialization": false,                                 
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@application/*": ["./src/application/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@test/*": ["./test/*"],
+      "@infra/*": ["./src/infra/*"],
+      "@api/*": ["./src/api/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@tests/*": ["./src/tests/*"],
+      "@prisma/*": ["./prisma/*"]
+    }                            
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
