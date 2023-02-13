@@ -4,17 +4,10 @@ import { prisma } from '..';
 import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper';
 
 export class PrismaCardsRepository implements CardsRepository {
-  findCardsByName(name: string): Promise<Card[]> {
-    throw new Error('Method not implemented.');
-  }
-  findCardsByCardType(types: string[]): Promise<Card[]> {
-    throw new Error('Method not implemented.');
-  }
-  findCardsBySetCode(setCode: string): Promise<Card[]> {
-    throw new Error('Method not implemented.');
-  }
-  findById(id: string): Promise<Card> {
-    throw new Error('Method not implemented.');
+  async createCards(cards: Card[]): Promise<void> {
+    await prisma.card.createMany({
+      data: cards.map(PrismaCardsMapper.toPrisma)
+    })
   }
  
 }

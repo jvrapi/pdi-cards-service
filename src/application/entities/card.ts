@@ -51,7 +51,6 @@ export class Card {
 
   private _set: Set;
 
-  private _imageUri: string | null;
 
   constructor(props: Replace<CardProps, OptionalCardProps>, id?: string) {
     this._id = id ?? randomUUID();
@@ -202,11 +201,5 @@ export class Card {
     return this._set;
   }
 
-  public set imageUri(uri: string | null) {
-    this._imageUri = uri;
-  }
-
-  public get imageUri() {
-    return this._imageUri;
-  }
+ 
 }

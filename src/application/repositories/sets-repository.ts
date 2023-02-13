@@ -1,12 +1,7 @@
-import { Set } from "@application/entities/set";
-
-export interface Pagination {
-  page: number
-  limit: number
-}
-
+import { Set } from "@application/entities/set"
 
 export interface SetsRepository {
-  findAll(filters: Pagination): Promise<Set[]>
-  count(): Promise<number>
+  findAll(): Promise<Set[]>
+  findByCode(code: string): Promise<Set | null>
+  create(set: Set): Promise<{id: string}>
 }

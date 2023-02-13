@@ -22,7 +22,6 @@ export class PrismaSetsMapper {
         releasedAt: raw.releasedAt,
         isDigital: raw.isDigital,
         isFoilOnly: raw.isFoilOnly,
-        iconUri: ''
       },
       raw.id
     );

@@ -10,7 +10,6 @@ export interface SetProps {
   isFoilOnly: boolean;
   createdAt: Date;
   updatedAt: Date;
-  iconUri: string
 }
 
 interface OptionalSetProps {
@@ -90,9 +89,5 @@ export class Set {
 
   public get updatedAt() {
     return this.props.updatedAt;
-  }
-
-  public get iconUri(){
-    return this.props.iconUri
   }
 }

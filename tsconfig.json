@@ -19,6 +19,7 @@
     "baseUrl": "./",
     "paths": {
       "@application/*": ["./src/application/*"],
+      "@api/*": ["./src/api/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@test/*": ["./test/*"],
       "@infra/*": ["./src/infra/*"],

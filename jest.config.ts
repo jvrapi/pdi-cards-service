@@ -1,3 +1,4 @@
+import { Config } from "jest";
 const swcConfig = {
   jsc: {
     parser: {
@@ -12,7 +13,7 @@ const swcConfig = {
   }
 };
 
-export default {
+const config:Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageProvider: 'v8',
@@ -29,3 +30,5 @@ export default {
     '^.+\\.(t|j)sx?$': ['@swc/jest', swcConfig]
   }
 };
+
+export default config
