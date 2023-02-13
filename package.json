@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "test:integration": "jest --config jest-integration.config.ts --forceExit",
-    "test:unit": "jest --config jest-unit.config.ts"
+    "test:unit": "jest --config jest-unit.config.ts",
+    "test": "yarn test:unit && yarn test:integration"
   },
   "dependencies": {
     "@apollo/server": "^4.3.2",

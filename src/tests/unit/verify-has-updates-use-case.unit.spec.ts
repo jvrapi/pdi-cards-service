@@ -1,11 +1,11 @@
 import { ApiRepository } from "@application/repositories/api-repository"
 import { SetsRepository } from "@application/repositories/sets-repository"
+import { VerifyHasUpdatesUseCase } from "@application/use-cases/verify-has-updates-use-case"
 import { makeCard } from "@tests/factories/card-factory"
 import { makeSet } from "@tests/factories/set-factory"
 
 import { InMemoryApiRepository } from "@tests/repositories/in-memory-api-repository"
 import { InMemorySetsRepository } from "@tests/repositories/in-memory-sets-repository"
-import { VerifyHasUpdatesUseCase } from "./verify-has-updates-use-case"
 
 describe('Verify has update use case', () => {
   let apiRepository: ApiRepository

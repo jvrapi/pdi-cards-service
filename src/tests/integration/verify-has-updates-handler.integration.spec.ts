@@ -3,16 +3,16 @@ import { SdkApiRepository } from "@api/repositories/sdk-api-repository"
 import { ApiRepository } from "@application/repositories/api-repository"
 import { CardsRepository } from "@application/repositories/cards-repository"
 import { SetsRepository } from "@application/repositories/sets-repository"
-import { CreateCardsUseCase } from "@application/use-cases/create-cards/create-cards-use-case"
-import { CreateSetUseCase } from "@application/use-cases/create-set/create-set-use-case"
-import { VerifyHasUpdatesUseCase } from "@application/use-cases/verify-has-updates/verify-has-updates-use-case"
 import { PrismaCardsRepository } from "@infra/database/prisma/repositories/prisma-cards-repository"
 import { PrismaSetsRepository } from "@infra/database/prisma/repositories/prisma-sets-repository"
-import { VerifyHasUpdatesHandler } from "./verify-has-updates-handler"
 import { clear } from 'console'
 import { ApiSetsMapper } from '@api/mappers/api-sets-mapper'
 import { prisma } from '@infra/database/prisma'
 import { Set } from '@application/entities/set'
+import { VerifyHasUpdatesHandler } from '@application/handlers/verify-has-updates-handler'
+import { CreateCardsUseCase } from '@application/use-cases/create-cards-use-case'
+import { CreateSetUseCase } from '@application/use-cases/create-set-use-case'
+import { VerifyHasUpdatesUseCase } from '@application/use-cases/verify-has-updates-use-case'
 
 describe('Verify has update handler', () => {
   let apiRepository: ApiRepository
