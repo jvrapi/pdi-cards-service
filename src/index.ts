@@ -1,10 +1,11 @@
 import { verifyHasUpdates } from "@application/handlers"
+import { testConnection } from "@infra/database/prisma"
 import nodeCron from 'node-cron'
+import { cron } from "./cron"
 
 async function main(){
-  nodeCron.schedule('0 0 * * *', async () => {
-    await verifyHasUpdates()
-  })
+  await testConnection()
+  cron()
 }
 
 
