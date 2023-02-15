@@ -5,9 +5,11 @@ import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper';
 
 export class PrismaCardsRepository implements CardsRepository {
   async createCards(cards: Card[]): Promise<void> {
-    await prisma.card.createMany({
-      data: cards.map(PrismaCardsMapper.toPrisma)
-    })
+   await Promise.all(cards.map(async card => {
+      await prisma.card.create({
+        data: PrismaCardsMapper.toPrisma(card)
+      })
+   })) 
   }
  
 }

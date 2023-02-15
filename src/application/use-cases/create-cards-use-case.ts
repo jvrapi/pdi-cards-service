@@ -10,6 +10,10 @@ export class CreateCardsUseCase {
       
       await this.cardsRepository.createCards(cards.map(card => {
         card.setId = setId
+        card.faces = card.faces.map(face => {
+          face.setId = setId
+          return face
+        })
         return card
       }))
     }catch(error){
