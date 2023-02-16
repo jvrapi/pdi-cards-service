@@ -3,16 +3,16 @@ export type VersionName =
   | 'foil'
   | 'nonFoil'
   | 'promo'
-  | 'textLess';
+  | 'textLess'
 
 export class Version {
-  private readonly version: VersionName;
+  private readonly version: VersionName
 
   constructor(version: VersionName) {
-    this.version = version;
+    this.version = version
   }
 
   public get value() {
-    return this.version;
+    return this.version
   }
 }

@@ -1,7 +1,7 @@
-import { CardsRepository } from "@application/repositories/cards-repository"
-import { CreateCardsUseCase } from "@application/use-cases/create-cards-use-case"
-import { makeCard } from "@tests/factories/card-factory"
-import { InMemoryCardsRepository } from "@tests/repositories/in-memory-cards-repository"
+import { type CardsRepository } from '@application/repositories/cards-repository'
+import { CreateCardsUseCase } from '@application/use-cases/create-cards-use-case'
+import { makeCard } from '@tests/factories/card-factory'
+import { InMemoryCardsRepository } from '@tests/repositories/in-memory-cards-repository'
 
 describe('Create cards use case', () => {
   let cardsRepository: CardsRepository
@@ -24,7 +24,8 @@ describe('Create cards use case', () => {
     createCardsSpy.mockRejectedValueOnce('error')
     const card = makeCard()
 
-    await expect(createCardsUseCase.execute([card], card.setId)).rejects.toThrowError()
+    await expect(
+      createCardsUseCase.execute([card], card.setId),
+    ).rejects.toThrowError()
   })
-  
 })

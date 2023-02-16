@@ -1,16 +1,15 @@
-import { Set } from "@application/entities/set";
-import { SetsRepository } from "@application/repositories/sets-repository";
+import { type Set } from '@application/entities/set'
+import { type SetsRepository } from '@application/repositories/sets-repository'
 
 export class CreateSetUseCase {
-  constructor(
-    private setsRepository: SetsRepository
-  ){}
-  async execute(set: Set){
+  constructor(private readonly setsRepository: SetsRepository) {}
+
+  async execute(set: Set) {
     const setAlreadyExists = await this.setsRepository.findByCode(set.code)
-    
-    if(setAlreadyExists){
+
+    if (setAlreadyExists != null) {
       throw new Error('coleção ja cadastrada')
     }
-    return await this.setsRepository.create(set)
+    return this.setsRepository.create(set)
   }
 }

@@ -1,19 +1,19 @@
-import { Config } from "jest";
+import { Config } from 'jest'
 const swcConfig = {
   jsc: {
     parser: {
       syntax: 'typescript',
       tsx: false,
-      decorators: true
+      decorators: true,
     },
     transform: {
       legacyDecorator: true,
-      decoratorMetadata: true
-    }
-  }
-};
+      decoratorMetadata: true,
+    },
+  },
+}
 
-const config:Config = {
+const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageProvider: 'v8',
@@ -24,11 +24,11 @@ const config:Config = {
     '@infra/(.*)$': '<rootDir>/src/infra/$1',
     '@api/(.*)$': '<rootDir>/src/api/$1',
     '@utils/(.*)$': '<rootDir>/src/utils/$1',
-    '@tests/(.*)$': '<rootDir>/src/tests/$1'
+    '@tests/(.*)$': '<rootDir>/src/tests/$1',
   },
   transform: {
-    '^.+\\.(t|j)sx?$': ['@swc/jest', swcConfig]
-  }
-};
+    '^.+\\.(t|j)sx?$': ['@swc/jest', swcConfig],
+  },
+}
 
 export default config

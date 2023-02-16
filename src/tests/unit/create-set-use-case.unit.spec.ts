@@ -1,7 +1,7 @@
-import { SetsRepository } from "@application/repositories/sets-repository"
-import { CreateSetUseCase } from "@application/use-cases/create-set-use-case"
-import { makeSet } from "@tests/factories/set-factory"
-import { InMemorySetsRepository } from "@tests/repositories/in-memory-sets-repository"
+import { type SetsRepository } from '@application/repositories/sets-repository'
+import { CreateSetUseCase } from '@application/use-cases/create-set-use-case'
+import { makeSet } from '@tests/factories/set-factory'
+import { InMemorySetsRepository } from '@tests/repositories/in-memory-sets-repository'
 
 describe('Create set use case', () => {
   let setsRepository: SetsRepository
@@ -23,16 +23,15 @@ describe('Create set use case', () => {
 
   it('should not be able to create a set with same code', async () => {
     const set = makeSet()
-    
+
     await setsRepository.create(set)
-    
+
     const findByCodeSpy = jest.spyOn(setsRepository, 'findByCode')
-    
+
     const createSpy = jest.spyOn(setsRepository, 'create')
-    
+
     await expect(createSetUseCase.execute(set)).rejects.toThrowError()
     expect(findByCodeSpy).toHaveBeenCalled()
     expect(createSpy).not.toHaveBeenCalled()
   })
-
 })

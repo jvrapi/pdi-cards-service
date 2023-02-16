@@ -1,5 +1,5 @@
-import { Set as RawSet } from '@prisma/client';
-import { Set } from '../../../../application/entities/set';
+import { type Set as RawSet } from '@prisma/client'
+import { Set } from '../../../../application/entities/set'
 
 export class PrismaSetsMapper {
   static toPrisma(set: Set) {
@@ -9,8 +9,8 @@ export class PrismaSetsMapper {
       type: set.type,
       releasedAt: set.releasedAt,
       isDigital: set.isDigital,
-      isFoilOnly: set.isFoilOnly
-    };
+      isFoilOnly: set.isFoilOnly,
+    }
   }
 
   static toDomain(raw: RawSet): Set {
@@ -23,7 +23,7 @@ export class PrismaSetsMapper {
         isDigital: raw.isDigital,
         isFoilOnly: raw.isFoilOnly,
       },
-      raw.id
-    );
+      raw.id,
+    )
   }
 }

@@ -1,13 +1,14 @@
-import { verifyHasUpdates } from "@application/handlers"
-import { testConnection } from "@infra/database/prisma"
-import nodeCron from 'node-cron'
-import { cron } from "./cron"
+import { testConnection } from '@infra/database/prisma'
+import { logger } from '@utils/logger'
+import { cron } from './cron'
 
-async function main(){
+async function main() {
   await testConnection()
   cron()
 }
 
-
 main()
-
+  .then(() => {
+    logger.success('Server')
+  })
+  .catch(logger.error)

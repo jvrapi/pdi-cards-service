@@ -1,11 +1,11 @@
-import { Card, CardProps } from "@application/entities/card";
-import { Color } from "@application/entities/color";
-import { Format } from "@application/entities/format";
-import { Version } from "@application/entities/version";
-import { makeSet } from "./set-factory";
+import { Card, type CardProps } from '@application/entities/card'
+import { Color } from '@application/entities/color'
+import { Format } from '@application/entities/format'
+import { Version } from '@application/entities/version'
+import { makeSet } from './set-factory'
 
 type Override = Partial<CardProps>
-export function makeCard(override: Override = {}){
+export function makeCard(override: Override = {}) {
   const set = makeSet()
   const card = new Card({
     name: 'name example',
@@ -31,7 +31,7 @@ export function makeCard(override: Override = {}){
     securityStamp: null,
     setId: set.id,
     typeLine: 'type line example',
-    ...override
+    ...override,
   })
 
   card.set = set

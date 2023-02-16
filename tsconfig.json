@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2018",
-    "lib": [
-      "es2020",
-      "ESNext.AsyncIterable"
-    ],
+    "lib": ["es2020", "ESNext.AsyncIterable"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "CommonJS",
@@ -26,7 +23,7 @@
       "@utils/*": ["./src/utils/*"],
       "@tests/*": ["./src/tests/*"],
       "@prisma/*": ["./prisma/*"]
-    }                            
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

@@ -17,27 +17,27 @@ export type FormatName =
   | 'paupercommander'
   | 'duel'
   | 'oldschool'
-  | 'premodern';
-  interface FormatProps {
-    format: FormatName,
-    isLegal: boolean
-  }
-  
+  | 'premodern'
+interface FormatProps {
+  format: FormatName
+  isLegal: boolean
+}
+
 export class Format {
   private readonly props: FormatProps
-  
-    constructor(props: FormatProps) {
-      this.props = {
-        ...props,
-        isLegal: props.isLegal ?? true
-      }
+
+  constructor(props: FormatProps) {
+    this.props = {
+      ...props,
+      isLegal: props.isLegal ?? true,
     }
-  
-    public get value() {
-      return this.props.format;
-    }
-  
-    public get isLegal() {
-      return this.props.isLegal;
-    }
+  }
+
+  public get value() {
+    return this.props.format
+  }
+
+  public get isLegal() {
+    return this.props.isLegal
+  }
 }
