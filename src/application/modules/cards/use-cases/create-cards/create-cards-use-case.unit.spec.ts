@@ -1,7 +1,7 @@
 import { type CardsRepository } from '@application/repositories/cards-repository'
-import { CreateCardsUseCase } from '@application/use-cases/create-cards-use-case'
 import { makeCard } from '@tests/factories/card-factory'
 import { InMemoryCardsRepository } from '@tests/repositories/in-memory-cards-repository'
+import { CreateCardsUseCase } from './create-cards-use-case'
 
 describe('Create cards use case', () => {
   let cardsRepository: CardsRepository
