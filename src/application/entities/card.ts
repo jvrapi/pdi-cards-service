@@ -1,5 +1,7 @@
-import { type Replace } from '@helpers/replace'
 import { randomUUID } from 'node:crypto'
+
+import { type Replace } from '@helpers/replace'
+
 import { type Color } from './color'
 import { type Format } from './format'
 import { type Set } from './set'
@@ -50,6 +52,8 @@ export class Card {
   private _face: Card
 
   private _set: Set
+
+  private _imageUri: string | null
 
   constructor(props: Replace<CardProps, OptionalCardProps>, id?: string) {
     this._id = id ?? randomUUID()
@@ -198,5 +202,13 @@ export class Card {
 
   public get set() {
     return this._set
+  }
+
+  public get imageUri() {
+    return this._imageUri
+  }
+
+  public set imageUri(uri: string | null) {
+    this._imageUri = uri
   }
 }

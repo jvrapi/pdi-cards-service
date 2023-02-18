@@ -53,7 +53,7 @@ model Card {
   face             Card?    @relation("faces", fields: [faceOfId], references: [id])
   createdAt        DateTime @default(now()) @map("created_at")
   updatedAt        DateTime @default(now()) @map("updated_at")
-  set              Set      @relation(fields: [setId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  set              Set      @relation(fields: [setId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   faces            Card[]   @relation("faces")
 
   @@map("cards")

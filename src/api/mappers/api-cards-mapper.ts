@@ -15,7 +15,7 @@ export class ApiCardsMapper {
   static toDomain(raw: Scry.Card): Card {
     const mapper = new ApiCardsMapper()
     const card = new Card({
-      name: mapper.getName(raw),
+      name: mapper.getName(raw.name),
       typeLine: mapper.getTypeLine(raw),
       manaCost: raw.mana_cost ?? null,
       borderColor: raw.border_color,
@@ -44,22 +44,23 @@ export class ApiCardsMapper {
       }),
     })
 
+    /* 
+      if card has faces, she will use image of first face. 
+    */
+    if (!mapper.hasCardFaces(raw.name)) {
+      card.imageUri = raw.getImageURI('png') ?? null
+    }
+
     card.faces = mapper.getFaces(raw)
 
     return card
   }
 
-  private getName(raw: Scry.Card) {
-    let { name } = raw
+  private getName(name: string) {
+    const hasFaces = this.hasCardFaces(name)
 
-    const cardNameAsArray = raw.name.split('//').map((name) => name.trim())
-
-    if (
-      cardNameAsArray.length === 2 &&
-      cardNameAsArray[0] === cardNameAsArray[1]
-    ) {
-      const [cardName1] = cardNameAsArray
-      name = cardName1
+    if (!hasFaces) {
+      return name.split('//').map((name) => name.trim())[0]
     }
 
     return name
@@ -147,37 +148,48 @@ export class ApiCardsMapper {
           }
           return cardFace // will return any card if it is not multifaceted
         })
-        .map(
-          (cardFace) =>
-            new Card({
-              name: cardFace.name,
-              manaCost: cardFace.mana_cost ?? null,
-              borderColor: null,
-              cmc: cardFace.cmc ?? null,
-              collectionId: null,
-              effectText: cardFace.oracle_text ?? null,
-              flavorText: cardFace.flavor_text ?? null,
-              frame: null,
-              isFoundInBooster: null,
-              isReprint: null,
-              isReserved: null,
-              isStorySpotlight: null,
-              isVariant: null,
-              language: card.lang,
-              layout: null,
-              loyalty: null,
-              rarity: null,
-              securityStamp: null,
-              typeLine: cardFace.type_line,
-              setId: card.set_id,
-              colors: this.parseColors(cardFace.colors),
-              formats: [],
-              versions: [],
-            }),
-        )
+        .map((cardFace) => {
+          const face = new Card({
+            name: cardFace.name,
+            manaCost: cardFace.getCost() ?? null,
+            borderColor: null,
+            cmc: cardFace.cmc ?? null,
+            collectionId: null,
+            effectText: cardFace.getText() ?? null,
+            flavorText: cardFace.flavor_text ?? null,
+            frame: null,
+            isFoundInBooster: null,
+            isReprint: null,
+            isReserved: null,
+            isStorySpotlight: null,
+            isVariant: null,
+            language: card.lang,
+            layout: null,
+            loyalty: null,
+            rarity: null,
+            securityStamp: null,
+            typeLine: cardFace.type_line,
+            setId: card.set_id,
+            colors: this.parseColors(cardFace.colors),
+            formats: [],
+            versions: [],
+          })
+
+          face.imageUri = cardFace.getImageURI('png') ?? null
+
+          return face
+        })
       return faces
     }
 
     return []
+  }
+
+  private hasCardFaces(cardName: string) {
+    const cardNameAsArray = cardName.split('//').map((name) => name.trim())
+
+    return (
+      cardNameAsArray.length === 2 && cardNameAsArray[0] !== cardNameAsArray[1]
+    )
   }
 }

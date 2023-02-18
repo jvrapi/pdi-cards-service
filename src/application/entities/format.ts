@@ -18,9 +18,10 @@ export type FormatName =
   | 'duel'
   | 'oldschool'
   | 'premodern'
+
 interface FormatProps {
   format: FormatName
-  isLegal: boolean
+  isLegal?: boolean
 }
 
 export class Format {

@@ -3,7 +3,7 @@ import type * as Scry from 'scryfall-sdk'
 
 export class ApiSetsMapper {
   static toDomain(raw: Scry.Set) {
-    return new Set(
+    const set = new Set(
       {
         name: raw.name,
         code: raw.code,
@@ -14,5 +14,9 @@ export class ApiSetsMapper {
       },
       raw.id,
     )
+
+    set.imageUri = raw.icon_svg_uri
+
+    return set
   }
 }

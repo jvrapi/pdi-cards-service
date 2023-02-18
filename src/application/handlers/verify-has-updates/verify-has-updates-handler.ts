@@ -1,5 +1,6 @@
 import { CreateCardsUseCase } from '@application/modules/cards/use-cases/create-cards/create-cards-use-case'
 import { CreateSetUseCase } from '@application/modules/sets/use-cases/create-set/create-set-use-case'
+import { SyncDataUseCase } from '@application/modules/update/use-cases/sync-data/sync-data-use-case'
 import { VerifyHasUpdatesUseCase } from '@application/modules/update/use-cases/verify-has-updates/verify-has-updates-use-case'
 import { logger } from '@utils/logger'
 
@@ -8,6 +9,7 @@ export class VerifyHasUpdatesHandler {
     private readonly verifyHasUpdateUseCase: VerifyHasUpdatesUseCase,
     private readonly createSetUseCase: CreateSetUseCase,
     private readonly createCardsUseCase: CreateCardsUseCase,
+    private readonly syncDataUseCase: SyncDataUseCase,
   ) {}
 
   async handle() {
@@ -18,7 +20,10 @@ export class VerifyHasUpdatesHandler {
         hasUpdates.map(async ({ set, cards }) => {
           const { id } = await this.createSetUseCase.execute(set)
           await this.createCardsUseCase.execute(cards, id)
-          // todo: send message to another's services to sync data
+          await this.syncDataUseCase.execute({
+            set,
+            cards,
+          })
         }),
       )
     } else {

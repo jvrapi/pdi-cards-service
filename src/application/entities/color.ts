@@ -1,6 +1,4 @@
-export type Colors = ('W' | 'B' | 'R' | 'U' | 'G')[]
-
-export type ColorName = keyof Colors
+export type ColorName = 'W' | 'B' | 'R' | 'U' | 'G'
 
 export class Color {
   private readonly color: ColorName

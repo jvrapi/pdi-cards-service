@@ -1,5 +1,6 @@
 import { testConnection } from '@infra/database/prisma'
 import { logger } from '@utils/logger'
+
 import { cron } from './cron'
 
 async function main() {
@@ -9,6 +10,6 @@ async function main() {
 
 main()
   .then(() => {
-    logger.success('Server')
+    logger.success('Server is running 🔥')
   })
   .catch(logger.error)

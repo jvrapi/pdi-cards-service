@@ -13,7 +13,7 @@ export function makeCard(override: Override = {}) {
     cmc: 1,
     collectionId: '1',
     colors: [new Color('B')],
-    formats: [new Format('standard')],
+    formats: [new Format({ format: 'standard' })],
     versions: [new Version('nonFoil')],
     manaCost: 'mana cost example',
     effectText: 'effect text example',
