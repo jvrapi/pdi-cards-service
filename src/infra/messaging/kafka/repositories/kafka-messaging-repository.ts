@@ -10,7 +10,6 @@ const { KAFKA_URL, KAFKA_CLIENT_ID } = process.env
 export class KafkaMessagingRepository implements MessagingRepository {
   private kafka: Kafka
   constructor() {
-    console.log(KAFKA_URL, KAFKA_CLIENT_ID)
     this.kafka = new Kafka({
       clientId: `${KAFKA_CLIENT_ID}`,
       brokers: [`${KAFKA_URL}`],

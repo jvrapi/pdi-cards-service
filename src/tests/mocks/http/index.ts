@@ -1,4 +1,5 @@
 import 'dotenv/config'
+
 import nock from 'nock'
 
 const apiUrl = process.env.API_URL as string

@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 
+import { logger } from '@/utils/logger'
+
 export const prisma = new PrismaClient()
 
 export async function testConnection() {
@@ -9,3 +11,5 @@ export async function testConnection() {
     throw new Error('Erro ao tentar conectar com o banco de dados')
   }
 }
+
+testConnection().catch(logger.error)
