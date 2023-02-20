@@ -1,7 +1,7 @@
 import {
   MessagingRepository,
   SyncDataProps,
-} from '@application/repositories/messaging-repository'
+} from '@/application/repositories/messaging-repository'
 import { Kafka } from 'kafkajs'
 
 export class KafkaMessagingRepository implements MessagingRepository {

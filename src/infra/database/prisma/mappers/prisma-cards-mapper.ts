@@ -1,5 +1,7 @@
-import { Card } from '@application/entities/card'
-import { Prisma, type Card as RawCard } from '@prisma/client'
+import { type Card as RawCard, Prisma } from '@prisma/client'
+
+import { Card } from '@/application/entities/card'
+
 import { PrismaColorsMapper } from './prisma-colors-mapper'
 import { PrismaFormatsMapper } from './prisma-formats-mapper'
 import { PrismaVersionsMapper } from './prisma-versions-mapper'

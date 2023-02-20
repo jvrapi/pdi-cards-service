@@ -1,8 +1,8 @@
-import { ApiCardsMapper } from '@api/mappers/api-cards-mapper'
-import { ApiSetsMapper } from '@api/mappers/api-sets-mapper'
-import { type Card } from '@application/entities/card'
-import { type Set } from '@application/entities/set'
-import { type ApiRepository } from '@application/repositories/api-repository'
+import { ApiCardsMapper } from '@/api/mappers/api-cards-mapper'
+import { ApiSetsMapper } from '@/api/mappers/api-sets-mapper'
+import { type Card } from '@/application/entities/card'
+import { type Set } from '@/application/entities/set'
+import { type ApiRepository } from '@/application/repositories/api-repository'
 import * as Scry from 'scryfall-sdk'
 
 export class SdkApiRepository implements ApiRepository {

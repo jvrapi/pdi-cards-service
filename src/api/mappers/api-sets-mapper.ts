@@ -1,5 +1,6 @@
-import { Set } from '@application/entities/set'
 import type * as Scry from 'scryfall-sdk'
+
+import { Set } from '@/application/entities/set'
 
 export class ApiSetsMapper {
   static toDomain(raw: Scry.Set) {

@@ -1,9 +1,9 @@
-import { Card } from '@application/entities/card'
-import { Set } from '@application/entities/set'
+import { Card } from '@/application/entities/card'
+import { Set } from '@/application/entities/set'
 import {
   MessagingRepository,
   SyncDataProps,
-} from '@application/repositories/messaging-repository'
+} from '@/application/repositories/messaging-repository'
 
 interface SyncDataUseCaseProps {
   set: Set

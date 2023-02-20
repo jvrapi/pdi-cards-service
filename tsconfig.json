@@ -13,14 +13,8 @@
     "outDir": "dist",
     "baseUrl": "./",
     "paths": {
-      "@application/*": ["./src/application/*"],
-      "@api/*": ["./src/api/*"],
-      "@helpers/*": ["src/application/helpers/*"],
-      "@test/*": ["./test/*"],
-      "@infra/*": ["./src/infra/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@tests/*": ["./src/tests/*"],
-      "@prisma/*": ["./prisma/*"]
+      "@/*": ["./src/*"],
+     
     }
   },
   "include": ["src/**/*"],

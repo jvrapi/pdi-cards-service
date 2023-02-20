@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-import { Replace } from '@application/helpers/replace'
+import { Replace } from '@/application/helpers/replace'
 
 export interface SetProps {
   code: string

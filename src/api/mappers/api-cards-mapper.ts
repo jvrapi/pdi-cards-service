@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import { Card } from '@application/entities/card'
-import { Color, ColorName } from '@application/entities/color'
-import { Format, type FormatName } from '@application/entities/format'
-import { Version, type VersionName } from '@application/entities/version'
+import { Card } from '@/application/entities/card'
+import { Color, ColorName } from '@/application/entities/color'
+import { Format, type FormatName } from '@/application/entities/format'
+import { Version, type VersionName } from '@/application/entities/version'
 import type * as Scry from 'scryfall-sdk'
 
 interface ApiVersion {

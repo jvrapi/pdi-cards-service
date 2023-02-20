@@ -1,5 +1,5 @@
-import { Set } from '@application/gql/models/set-model'
-import { SetsRepository } from '@application/repositories/sets-repository'
+import { Set } from '@/application/gql/models/set-model'
+import { SetsRepository } from '@/application/repositories/sets-repository'
 import { inject, injectable } from 'tsyringe'
 
 interface Request {

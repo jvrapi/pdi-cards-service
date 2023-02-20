@@ -1,5 +1,6 @@
 import { type Set as RawSet } from '@prisma/client'
-import { Set } from '../../../../application/entities/set'
+
+import { Set } from '@/application/entities/set'
 
 export class PrismaSetsMapper {
   static toPrisma(set: Set) {

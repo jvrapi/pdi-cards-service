@@ -1,5 +1,6 @@
-import { type Card } from '@application/entities/card'
-import { type CardsRepository } from '@application/repositories/cards-repository'
+import { type Card } from '@/application/entities/card'
+import { type CardsRepository } from '@/application/repositories/cards-repository'
+
 import { prisma } from '..'
 import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper'
 

@@ -1,10 +1,11 @@
-import { Format, type FormatName } from '@application/entities/format'
 import { type Prisma } from '@prisma/client'
+
+import { Format, type FormatName } from '@/application/entities/format'
 
 export class PrismaFormatsMapper {
   static toDomain(formats: Prisma.JsonArray): Format[] {
     return (formats as unknown as FormatName[]).map(
-      (format) => new Format(format),
+      (format) => new Format({ format }),
     )
   }
 

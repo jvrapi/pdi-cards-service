@@ -1,5 +1,5 @@
-import { type Set } from '@application/entities/set'
-import { type SetsRepository } from '@application/repositories/sets-repository'
+import { type Set } from '@/application/entities/set'
+import { type SetsRepository } from '@/application/repositories/sets-repository'
 
 export class InMemorySetsRepository implements SetsRepository {
   private readonly sets: Set[] = []

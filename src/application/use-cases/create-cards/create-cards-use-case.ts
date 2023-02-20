@@ -1,8 +1,13 @@
-import { type Card } from '@application/entities/card'
-import { type CardsRepository } from '@application/repositories/cards-repository'
+import { Card } from 'scryfall-sdk'
+import { inject } from 'tsyringe'
+
+import { CardsRepository } from '@/application/repositories/cards-repository'
 
 export class CreateCardsUseCase {
-  constructor(private readonly cardsRepository: CardsRepository) {}
+  constructor(
+    @inject('CardsRepository')
+    private readonly cardsRepository: CardsRepository,
+  ) {}
 
   async execute(cards: Card[], setId: string) {
     try {

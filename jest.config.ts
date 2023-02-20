@@ -19,12 +19,7 @@ const config: Config = {
   coverageProvider: 'v8',
   testTimeout: 30000,
   moduleNameMapper: {
-    '@application/(.*)$': '<rootDir>/src/application/$1',
-    '@helpers/(.*)$': '<rootDir>/src/helpers/$1',
-    '@infra/(.*)$': '<rootDir>/src/infra/$1',
-    '@api/(.*)$': '<rootDir>/src/api/$1',
-    '@utils/(.*)$': '<rootDir>/src/utils/$1',
-    '@tests/(.*)$': '<rootDir>/src/tests/$1',
+    '@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest', swcConfig],

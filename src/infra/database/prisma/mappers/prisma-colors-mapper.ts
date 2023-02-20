@@ -1,5 +1,6 @@
-import { Color, type ColorName } from '@application/entities/color'
 import { type Prisma } from '@prisma/client'
+
+import { Color, type ColorName } from '@/application/entities/color'
 
 export class PrismaColorsMapper {
   static toDomain(raw: Prisma.JsonArray): Color[] {

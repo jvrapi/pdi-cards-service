@@ -1,5 +1,5 @@
-import { type ApiRepository } from '@application/repositories/api-repository'
-import { type SetsRepository } from '@application/repositories/sets-repository'
+import { type ApiRepository } from '@/application/repositories/api-repository'
+import { type SetsRepository } from '@/application/repositories/sets-repository'
 
 export class VerifyHasUpdatesUseCase {
   constructor(

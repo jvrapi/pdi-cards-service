@@ -1,8 +1,8 @@
-import { Set } from '@application/entities/set'
+import { Set } from '@/application/entities/set'
 import {
   FindAllFilters,
   SetsRepository,
-} from '@application/repositories/sets-repository'
+} from '@/application/repositories/sets-repository'
 
 import { prisma } from '..'
 import { PrismaSetsMapper } from '../mappers/prisma-sets-mapper'

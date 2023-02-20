@@ -1,6 +1,6 @@
-import { type SetsRepository } from '@application/repositories/sets-repository'
-import { makeSet } from '@tests/factories/set-factory'
-import { InMemorySetsRepository } from '@tests/repositories/in-memory-sets-repository'
+import { type SetsRepository } from '@/application/repositories/sets-repository'
+import { makeSet } from '@/tests/factories/set-factory'
+import { InMemorySetsRepository } from '@/tests/repositories/in-memory-sets-repository'
 
 import { CreateSetUseCase } from './create-set-use-case'
 

@@ -1,4 +1,4 @@
-import { Set, type SetProps } from '@application/entities/set'
+import { Set, type SetProps } from '@/application/entities/set'
 
 type Override = Partial<SetProps>
 

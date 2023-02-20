@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import 'dotenv/config'
 import './container'
 
@@ -6,11 +5,11 @@ import { resolve } from 'node:path'
 
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import { SetResolver } from '@application/resolvers/set-resolver'
 import { container } from 'tsyringe'
 import { buildSchema } from 'type-graphql'
 
 import { formatError } from './application/middlewares/error-middleware'
+import { SetResolver } from './application/resolvers/set-resolver'
 
 export async function initServer() {
   const schema = await buildSchema({

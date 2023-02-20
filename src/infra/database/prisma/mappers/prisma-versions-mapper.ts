@@ -1,5 +1,6 @@
-import { Version, type VersionName } from '@application/entities/version'
 import { type Prisma } from '@prisma/client'
+
+import { Version, type VersionName } from '@/application/entities/version'
 
 export class PrismaVersionsMapper {
   static toDomain(raw: Prisma.JsonArray): Version[] {

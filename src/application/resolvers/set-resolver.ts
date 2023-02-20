@@ -1,6 +1,6 @@
-import { SetFilters } from '@application/gql/inputs/set-filters-input'
-import { Set } from '@application/gql/models/set-model'
-import { FindAllSetsUseCase } from '@application/use-cases/find-all-sets-use-case'
+import { SetFilters } from '@/application/gql/inputs/set-filters-input'
+import { Set } from '@/application/gql/models/set-model'
+import { FindAllSetsUseCase } from '@/application/use-cases/find-all-sets-use-case'
 import { container } from 'tsyringe'
 import { Arg, Query, Resolver } from 'type-graphql'
 

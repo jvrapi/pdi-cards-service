@@ -1,4 +1,5 @@
 import { config } from 'dotenv'
+
 import jestConfig from './jest.config'
 
 config({ path: './.env.testing' })
