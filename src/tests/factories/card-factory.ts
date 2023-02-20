@@ -2,6 +2,7 @@ import { Card, type CardProps } from '@application/entities/card'
 import { Color } from '@application/entities/color'
 import { Format } from '@application/entities/format'
 import { Version } from '@application/entities/version'
+
 import { makeSet } from './set-factory'
 
 type Override = Partial<CardProps>

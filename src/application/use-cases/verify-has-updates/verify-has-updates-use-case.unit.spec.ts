@@ -1,9 +1,9 @@
 import { type ApiRepository } from '@application/repositories/api-repository'
 import { type SetsRepository } from '@application/repositories/sets-repository'
 import { makeSet } from '@tests/factories/set-factory'
-
 import { InMemoryApiRepository } from '@tests/repositories/in-memory-api-repository'
 import { InMemorySetsRepository } from '@tests/repositories/in-memory-sets-repository'
+
 import { VerifyHasUpdatesUseCase } from './verify-has-updates-use-case'
 
 describe('Verify has update use case', () => {

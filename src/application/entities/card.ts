@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-import { type Replace } from '@helpers/replace'
+import { Replace } from '@application/helpers/replace'
 
 import { type Color } from './color'
 import { type Format } from './format'

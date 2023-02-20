@@ -1,7 +1,14 @@
 import { type Set } from '@application/entities/set'
 
+export interface FindAllFilters {
+  id?: string
+  code?: string
+  offset?: number
+  limit: number
+}
+
 export interface SetsRepository {
-  findAll: () => Promise<Set[]>
+  findAll: (filters?: FindAllFilters) => Promise<Set[]>
   findByCode: (code: string) => Promise<Set | null>
   create: (set: Set) => Promise<{ id: string }>
 }
