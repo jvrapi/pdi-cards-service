@@ -1,8 +1,8 @@
 import { type SetsRepository } from '@/application/repositories/sets-repository'
-import { makeSet } from '@/tests/factories/set-factory'
-import { InMemorySetsRepository } from '@/tests/repositories/in-memory-sets-repository'
+import { CreateSetUseCase } from '@/application/use-cases/create-set/create-set-use-case'
 
-import { CreateSetUseCase } from './create-set-use-case'
+import { makeSet } from '../factories/set-factory'
+import { InMemorySetsRepository } from '../repositories/in-memory-sets-repository'
 
 describe('Create set use case', () => {
   let setsRepository: SetsRepository

@@ -1,6 +1,6 @@
-import { Card } from 'scryfall-sdk'
 import { inject } from 'tsyringe'
 
+import { Card } from '@/application/entities/card'
 import { CardsRepository } from '@/application/repositories/cards-repository'
 
 export class CreateCardsUseCase {
