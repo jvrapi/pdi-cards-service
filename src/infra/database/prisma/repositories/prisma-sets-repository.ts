@@ -10,10 +10,6 @@ import { PrismaSetsMapper } from '../mappers/prisma-sets-mapper'
 export class PrismaSetsRepository implements SetsRepository {
   async findAll(filters?: FindAllFilters): Promise<Set[]> {
     const sets = await prisma.set.findMany({
-      where: {
-        code: filters?.code,
-        id: filters?.id,
-      },
       take: filters?.limit,
       skip: filters?.offset,
     })

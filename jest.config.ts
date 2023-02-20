@@ -17,6 +17,7 @@ const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageProvider: 'v8',
+  coverageReporters: ['json', 'lcov'],
   testTimeout: 30000,
   moduleNameMapper: {
     '@/(.*)$': '<rootDir>/src/$1',

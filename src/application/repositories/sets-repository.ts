@@ -1,8 +1,6 @@
 import { type Set } from '@/application/entities/set'
 
 export interface FindAllFilters {
-  id?: string
-  code?: string
   offset?: number
   limit: number
 }

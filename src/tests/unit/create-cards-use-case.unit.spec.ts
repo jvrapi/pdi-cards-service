@@ -1,5 +1,5 @@
 import { CardsRepository } from '@/application/repositories/cards-repository'
-import { CreateCardsUseCase } from '@/application/use-cases/create-cards/create-cards-use-case'
+import { CreateCardsUseCase } from '@/application/use-cases/create-cards-use-case'
 
 import { makeCard } from '../factories/card-factory'
 import { InMemoryCardsRepository } from '../repositories/in-memory-cards-repository'
@@ -16,6 +16,7 @@ describe('Create cards use case', () => {
   it('should be able to create a cards', async () => {
     const createSpy = jest.spyOn(cardsRepository, 'createCards')
     const card = makeCard()
+    card.faces = [makeCard()]
     await createCardsUseCase.execute([card], card.setId)
     expect(createSpy).toHaveBeenCalled()
   })

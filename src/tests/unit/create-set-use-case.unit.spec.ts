@@ -1,5 +1,5 @@
 import { type SetsRepository } from '@/application/repositories/sets-repository'
-import { CreateSetUseCase } from '@/application/use-cases/create-set/create-set-use-case'
+import { CreateSetUseCase } from '@/application/use-cases/create-set-use-case'
 
 import { makeSet } from '../factories/set-factory'
 import { InMemorySetsRepository } from '../repositories/in-memory-sets-repository'

@@ -1,7 +1,7 @@
-import { CreateCardsUseCase } from '@/application/use-cases/create-cards/create-cards-use-case'
-import { CreateSetUseCase } from '@/application/use-cases/create-set/create-set-use-case'
-import { SyncDataUseCase } from '@/application/use-cases/sync-data/sync-data-use-case'
-import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates/verify-has-updates-use-case'
+import { CreateCardsUseCase } from '@/application/use-cases/create-cards-use-case'
+import { CreateSetUseCase } from '@/application/use-cases/create-set-use-case'
+import { SyncDataUseCase } from '@/application/use-cases/sync-data-use-case'
+import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates-use-case'
 import { logger } from '@/utils/logger'
 
 export class VerifyHasUpdatesHandler {

@@ -1,3 +1,5 @@
+import { inject } from 'tsyringe'
+
 import { Card } from '@/application/entities/card'
 import { Set } from '@/application/entities/set'
 import {
@@ -11,7 +13,10 @@ interface SyncDataUseCaseProps {
 }
 
 export class SyncDataUseCase {
-  constructor(private messagingRepository: MessagingRepository) {}
+  constructor(
+    @inject('MessagingRepository')
+    private messagingRepository: MessagingRepository,
+  ) {}
 
   async execute({ set, cards }: SyncDataUseCaseProps) {
     const messageProps: SyncDataProps[] = []
@@ -28,7 +33,7 @@ export class SyncDataUseCase {
         imageUri: card.imageUri ?? '',
         type: 'card',
       })
-      if (card.faces.length > 0) {
+      if (card.faces?.length > 0) {
         card.faces.forEach((face) => {
           messageProps.push({
             id: face.id,

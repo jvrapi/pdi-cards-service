@@ -1,8 +1,13 @@
+import { inject } from 'tsyringe'
+
 import { type Set } from '@/application/entities/set'
 import { type SetsRepository } from '@/application/repositories/sets-repository'
 
 export class CreateSetUseCase {
-  constructor(private readonly setsRepository: SetsRepository) {}
+  constructor(
+    @inject('SetsRepository')
+    private readonly setsRepository: SetsRepository,
+  ) {}
 
   async execute(set: Set) {
     const setAlreadyExists = await this.setsRepository.findByCode(set.code)

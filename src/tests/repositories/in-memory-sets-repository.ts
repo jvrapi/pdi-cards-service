@@ -1,11 +1,23 @@
 import { type Set } from '@/application/entities/set'
-import { type SetsRepository } from '@/application/repositories/sets-repository'
+import {
+  FindAllFilters,
+  type SetsRepository,
+} from '@/application/repositories/sets-repository'
 
 export class InMemorySetsRepository implements SetsRepository {
   private readonly sets: Set[] = []
 
-  async findAll(): Promise<Set[]> {
-    return this.sets
+  async findAll(filters?: FindAllFilters): Promise<Set[]> {
+    let sets = this.sets
+
+    if (filters) {
+      sets = sets.slice(0, filters.limit)
+
+      if (filters.offset) {
+        sets = this.sets.slice(filters.offset, filters.limit + filters.offset)
+      }
+    }
+    return sets
   }
 
   async findByCode(code: string): Promise<Set | null> {

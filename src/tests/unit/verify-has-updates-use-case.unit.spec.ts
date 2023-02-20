@@ -1,6 +1,6 @@
 import { type ApiRepository } from '@/application/repositories/api-repository'
 import { type SetsRepository } from '@/application/repositories/sets-repository'
-import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates/verify-has-updates-use-case'
+import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates-use-case'
 
 import { makeSet } from '../factories/set-factory'
 import { InMemoryApiRepository } from '../repositories/in-memory-api-repository'

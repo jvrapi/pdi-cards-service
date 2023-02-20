@@ -1,11 +1,15 @@
-import { config } from 'dotenv'
+import { config as dotenvConfig } from 'dotenv'
+import { Config } from 'jest'
 
 import jestConfig from './jest.config'
 
-config({ path: './.env.testing' })
+dotenvConfig({ path: './.env.testing' })
 
-export default {
+const config: Config = {
   ...jestConfig,
   testRegex: '.unit.spec.ts$',
   coverageDirectory: './coverage/unit',
+  setupFiles: ['./jest-setup.ts'],
 }
+
+export default config

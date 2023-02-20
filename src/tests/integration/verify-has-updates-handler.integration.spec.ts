@@ -7,12 +7,14 @@ import { VerifyHasUpdatesHandler } from '@/application/handlers/verify-has-updat
 import { type ApiRepository } from '@/application/repositories/api-repository'
 import { type CardsRepository } from '@/application/repositories/cards-repository'
 import { type SetsRepository } from '@/application/repositories/sets-repository'
-import { CreateCardsUseCase } from '@/application/use-cases/create-cards/create-cards-use-case'
-import { CreateSetUseCase } from '@/application/use-cases/create-set/create-set-use-case'
-import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates/verify-has-updates-use-case'
+import { CreateCardsUseCase } from '@/application/use-cases/create-cards-use-case'
+import { CreateSetUseCase } from '@/application/use-cases/create-set-use-case'
+import { SyncDataUseCase } from '@/application/use-cases/sync-data-use-case'
+import { VerifyHasUpdatesUseCase } from '@/application/use-cases/verify-has-updates-use-case'
 import { prisma } from '@/infra/database/prisma'
 import { PrismaCardsRepository } from '@/infra/database/prisma/repositories/prisma-cards-repository'
 import { PrismaSetsRepository } from '@/infra/database/prisma/repositories/prisma-sets-repository'
+import { KafkaMessagingRepository } from '@/infra/messaging/kafka/repositories/kafka-messaging-repository'
 
 describe('Verify has update handler', () => {
   let apiRepository: ApiRepository
@@ -30,17 +32,20 @@ describe('Verify has update handler', () => {
     apiRepository = new SdkApiRepository()
     setsRepository = new PrismaSetsRepository()
     cardsRepository = new PrismaCardsRepository()
+    const messagingRepository = new KafkaMessagingRepository()
     verifyHasUpdatesUseCase = new VerifyHasUpdatesUseCase(
       apiRepository,
       setsRepository,
     )
     createSetUseCase = new CreateSetUseCase(setsRepository)
     createCardsUseCase = new CreateCardsUseCase(cardsRepository)
+    const syncDataUseCase = new SyncDataUseCase(messagingRepository)
 
     verifyHasUpdatesHandler = new VerifyHasUpdatesHandler(
       verifyHasUpdatesUseCase,
       createSetUseCase,
       createCardsUseCase,
+      syncDataUseCase,
     )
     const allSetsSpy = jest.spyOn(Scry.Sets, 'all')
     const apiSet = await Scry.Sets.byId('3963badb-c147-489a-95a7-6520a2960bf6')

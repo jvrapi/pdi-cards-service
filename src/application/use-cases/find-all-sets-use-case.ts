@@ -1,10 +1,9 @@
-import { Set } from '@/application/gql/models/set-model'
-import { SetsRepository } from '@/application/repositories/sets-repository'
 import { inject, injectable } from 'tsyringe'
 
+import { Set } from '@/application/gql/models/set-model'
+import { SetsRepository } from '@/application/repositories/sets-repository'
+
 interface Request {
-  id?: string
-  code?: string
   offset?: number
   limit: number
 }
