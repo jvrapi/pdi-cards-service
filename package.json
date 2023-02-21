@@ -7,8 +7,9 @@
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
     "test:integration": "jest --config jest-integration.config.ts --forceExit",
+    "test:e2e": "jest --config jest-e2e.config.ts --forceExit",
     "test:unit": "jest --config jest-unit.config.ts",
-    "test": "yarn test:unit && yarn test:integration",
+    "test": "yarn test:unit && yarn test:integration && yarn test:e2e",
     "lint": "eslint --fix --ext .ts .",
     "prettier": "prettier --write ."
   },
@@ -44,8 +45,10 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "graphql-tag": "^2.12.6",
     "jest": "^29.4.1",
     "nock": "^13.3.0",
+    "supertest-graphql": "^1.1.4",
     "ts-node": "^10.9.1",
     "tsx": "^3.12.2",
     "typescript": "*"
