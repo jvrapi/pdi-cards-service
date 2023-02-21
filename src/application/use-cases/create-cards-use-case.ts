@@ -1,8 +1,9 @@
-import { inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
 import { Card } from '@/application/entities/card'
 import { CardsRepository } from '@/application/repositories/cards-repository'
 
+@injectable()
 export class CreateCardsUseCase {
   constructor(
     @inject('CardsRepository')

@@ -7,7 +7,7 @@ const config: Config = {
   testEnvironment: './prisma/prisma-test-environment.ts',
   testRegex: '.integration.spec.ts$',
   coverageDirectory: './coverage/integration',
-  setupFiles: ['./jest-setup.ts'],
+  setupFiles: ['./jest-integration.setup.ts'],
 }
 
 export default config

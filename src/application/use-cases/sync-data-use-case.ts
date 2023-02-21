@@ -1,4 +1,4 @@
-import { inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
 import { Card } from '@/application/entities/card'
 import { Set } from '@/application/entities/set'
@@ -12,6 +12,7 @@ interface SyncDataUseCaseProps {
   cards: Card[]
 }
 
+@injectable()
 export class SyncDataUseCase {
   constructor(
     @inject('MessagingRepository')

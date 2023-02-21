@@ -1,9 +1,14 @@
+import { inject, injectable } from 'tsyringe'
+
 import { type ApiRepository } from '@/application/repositories/api-repository'
 import { type SetsRepository } from '@/application/repositories/sets-repository'
 
+@injectable()
 export class VerifyHasUpdatesUseCase {
   constructor(
+    @inject('ApiRepository')
     private readonly apiRepository: ApiRepository,
+    @inject('SetsRepository')
     private readonly setsRepository: SetsRepository,
   ) {}
 

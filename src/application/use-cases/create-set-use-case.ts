@@ -1,8 +1,9 @@
-import { inject } from 'tsyringe'
+import { inject, injectable } from 'tsyringe'
 
 import { type Set } from '@/application/entities/set'
 import { type SetsRepository } from '@/application/repositories/sets-repository'
 
+@injectable()
 export class CreateSetUseCase {
   constructor(
     @inject('SetsRepository')

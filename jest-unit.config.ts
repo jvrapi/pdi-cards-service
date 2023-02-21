@@ -6,7 +6,7 @@ const config: Config = {
   ...jestConfig,
   testRegex: '.unit.spec.ts$',
   coverageDirectory: './coverage/unit',
-  setupFiles: ['./jest-setup.ts'],
+  setupFiles: ['./jest-unit.setup.ts'],
 }
 
 export default config

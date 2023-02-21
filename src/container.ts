@@ -2,6 +2,8 @@ import 'reflect-metadata'
 
 import { container } from 'tsyringe'
 
+import { SdkApiRepository } from './api/repositories/sdk-api-repository'
+import { ApiRepository } from './application/repositories/api-repository'
 import { CardsRepository } from './application/repositories/cards-repository'
 import { MessagingRepository } from './application/repositories/messaging-repository'
 import { SetsRepository } from './application/repositories/sets-repository'
@@ -13,6 +15,8 @@ container.registerSingleton<SetsRepository>(
   'SetsRepository',
   PrismaSetsRepository,
 )
+
+container.registerSingleton<ApiRepository>('ApiRepository', SdkApiRepository)
 
 container.registerSingleton<CardsRepository>(
   'CardsRepository',
