@@ -1,7 +1,8 @@
-import chalk from 'chalk'
 import { createWriteStream, existsSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import util from 'node:util'
+
+import chalk from 'chalk'
 import { format } from 'date-fns'
 
 const { log, time, timeEnd } = console

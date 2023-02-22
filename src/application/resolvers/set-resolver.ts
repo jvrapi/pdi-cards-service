@@ -3,14 +3,20 @@ import { Arg, Query, Resolver } from 'type-graphql'
 
 import { SetFilters } from '@/application/gql/inputs/set-filters-input'
 import { Set } from '@/application/gql/models/set-model'
-import { FindAllSetsUseCase } from '@/application/use-cases/find-all-sets-use-case'
+
+import { FindSetUseCase } from '../use-cases/find-set-use-case'
 
 @Resolver()
 export class SetResolver {
-  @Query(() => [Set])
-  async sets(@Arg('filters', () => SetFilters) filters: SetFilters) {
-    const findAllSetsUseCase = container.resolve(FindAllSetsUseCase)
-    const sets = await findAllSetsUseCase.execute(filters)
-    return sets
+  @Query(() => Set)
+  async set(
+    @Arg('filters', () => SetFilters) { id }: SetFilters,
+  ): Promise<Set | null> {
+    const findSetUseCase = container.resolve(FindSetUseCase)
+    const set = await findSetUseCase.execute({ id })
+    if (!set) {
+      return null
+    }
+    return set
   }
 }

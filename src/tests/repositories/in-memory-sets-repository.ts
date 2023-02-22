@@ -20,6 +20,16 @@ export class InMemorySetsRepository implements SetsRepository {
     return sets
   }
 
+  async findById(id: string): Promise<Set | null> {
+    const set = this.sets.find((set) => set.id === id)
+
+    if (set == null) {
+      return null
+    }
+
+    return set
+  }
+
   async findByCode(code: string): Promise<Set | null> {
     const set = this.sets.find((set) => set.code === code)
 

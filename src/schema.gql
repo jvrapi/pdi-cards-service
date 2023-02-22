@@ -4,7 +4,7 @@
 # -----------------------------------------------
 
 type Query {
-  sets(filters: SetFilters!): [Set!]!
+  set(filters: SetFilters!): Set!
 }
 
 type Set {
@@ -15,8 +15,5 @@ type Set {
 }
 
 input SetFilters {
-  code: String
   id: String
-  limit: Int!
-  offset: Int
 }

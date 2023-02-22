@@ -24,7 +24,21 @@ export class PrismaSetsRepository implements SetsRepository {
       },
     })
 
-    if (set != null) {
+    if (set) {
+      return PrismaSetsMapper.toDomain(set)
+    }
+
+    return null
+  }
+
+  async findById(id: string): Promise<Set | null> {
+    const set = await prisma.set.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    if (set) {
       return PrismaSetsMapper.toDomain(set)
     }
 
