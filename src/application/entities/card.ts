@@ -4,11 +4,9 @@ import { Replace } from '@/application/helpers/replace'
 
 import { type Color } from './color'
 import { type Format } from './format'
-import { type Set } from './set'
 import { type Version } from './version'
 
 export interface CardProps {
-  setId: string
   name: string
   language: string
   layout: string | null
@@ -50,8 +48,6 @@ export class Card {
   private _faceOfId: string
 
   private _face: Card
-
-  private _set: Set
 
   private _imageUri: string | null
 
@@ -156,14 +152,6 @@ export class Card {
     return this.props.formats
   }
 
-  public get setId() {
-    return this.props.setId
-  }
-
-  public set setId(setId: string) {
-    this.props.setId = setId
-  }
-
   public get createdAt() {
     return this.props.createdAt
   }
@@ -194,14 +182,6 @@ export class Card {
 
   public set face(card: Card) {
     this._face = card
-  }
-
-  public set set(set: Set) {
-    this._set = set
-  }
-
-  public get set() {
-    return this._set
   }
 
   public get imageUri() {

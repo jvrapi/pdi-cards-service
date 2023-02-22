@@ -3,11 +3,30 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Card {
+  colors: [String!]!
+  faces: [Face!]
+  formats: [String!]!
+  id: String!
+  name: String!
+  rarity: String!
+  type: String!
+  versions: [String!]!
+}
+
+type Face {
+  colors: [String!]!
+  id: String!
+  name: String!
+  type: String!
+}
+
 type Query {
   set(filters: SetFilters!): Set!
 }
 
 type Set {
+  cards: [Card!]!
   code: String!
   id: String!
   name: String!

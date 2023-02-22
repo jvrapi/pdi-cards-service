@@ -1,7 +1,14 @@
-import { type Set as RawSet } from '@prisma/client'
+import { type Card as RawCard, type Set as RawSet } from '@prisma/client'
 
 import { Set } from '@/application/entities/set'
 
+import { PrismaCardsMapper } from './prisma-cards-mapper'
+
+type RawResponse = RawSet & {
+  cards: (RawCard & {
+    faces: RawCard[]
+  })[]
+}
 export class PrismaSetsMapper {
   static toPrisma(set: Set) {
     return {
@@ -14,7 +21,7 @@ export class PrismaSetsMapper {
     }
   }
 
-  static toDomain(raw: RawSet): Set {
+  static toDomain(raw: RawResponse): Set {
     return new Set(
       {
         code: raw.code,
@@ -23,6 +30,7 @@ export class PrismaSetsMapper {
         releasedAt: raw.releasedAt,
         isDigital: raw.isDigital,
         isFoilOnly: raw.isFoilOnly,
+        cards: raw.cards.map(PrismaCardsMapper.toDomain),
       },
       raw.id,
     )

@@ -2,6 +2,8 @@ import { randomUUID } from 'node:crypto'
 
 import { Replace } from '@/application/helpers/replace'
 
+import { Card } from './card'
+
 export interface SetProps {
   code: string
   name: string
@@ -11,6 +13,7 @@ export interface SetProps {
   isFoilOnly: boolean
   createdAt: Date
   updatedAt: Date
+  cards: Card[]
 }
 
 interface OptionalSetProps {
@@ -100,5 +103,9 @@ export class Set {
 
   public set imageUri(image: string) {
     this._imageUri = image
+  }
+
+  public get cards() {
+    return this.props.cards
   }
 }

@@ -12,6 +12,13 @@ export class PrismaSetsRepository implements SetsRepository {
     const sets = await prisma.set.findMany({
       take: filters?.limit,
       skip: filters?.offset,
+      include: {
+        cards: {
+          include: {
+            faces: true,
+          },
+        },
+      },
     })
 
     return sets.map(PrismaSetsMapper.toDomain)
@@ -21,6 +28,13 @@ export class PrismaSetsRepository implements SetsRepository {
     const set = await prisma.set.findFirst({
       where: {
         code,
+      },
+      include: {
+        cards: {
+          include: {
+            faces: true,
+          },
+        },
       },
     })
 
@@ -35,6 +49,13 @@ export class PrismaSetsRepository implements SetsRepository {
     const set = await prisma.set.findUnique({
       where: {
         id,
+      },
+      include: {
+        cards: {
+          include: {
+            faces: true,
+          },
+        },
       },
     })
 
