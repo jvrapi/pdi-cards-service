@@ -9,7 +9,7 @@
     "test:integration": "jest --config jest-integration.config.ts --forceExit",
     "test:e2e": "jest --config jest-e2e.config.ts --forceExit",
     "test:unit": "jest --config jest-unit.config.ts",
-    "test": "yarn test:unit && yarn test:integration && yarn test:e2e",
+    "test": "yarn test:unit && yarn test:e2e",
     "lint": "eslint --fix --ext .ts .",
     "prettier": "prettier --write ."
   },
@@ -24,7 +24,6 @@
     "graphql": "^16.6.0",
     "kafkajs": "^2.2.3",
     "mysql2": "^3.1.2",
-    "node-cron": "^3.0.2",
     "prisma": "^4.9.0",
     "reflect-metadata": "^0.1.13",
     "scryfall-sdk": "^4.0.1",

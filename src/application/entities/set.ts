@@ -13,7 +13,6 @@ export interface SetProps {
   isFoilOnly: boolean
   createdAt: Date
   updatedAt: Date
-  cards: Card[]
 }
 
 interface OptionalSetProps {
@@ -27,6 +26,8 @@ export class Set {
   private readonly props: SetProps
 
   private _imageUri: string
+
+  private _cards: Card[]
 
   constructor(props: Replace<SetProps, OptionalSetProps>, id?: string) {
     this._id = id ?? randomUUID()
@@ -106,6 +107,10 @@ export class Set {
   }
 
   public get cards() {
-    return this.props.cards
+    return this._cards
+  }
+
+  public set cards(cards: Card[]) {
+    this._cards = cards
   }
 }

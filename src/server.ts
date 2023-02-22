@@ -10,10 +10,8 @@ import { buildSchema } from 'type-graphql'
 
 import { formatError } from './application/middlewares/error-middleware'
 import { SetResolver } from './application/resolvers/set-resolver'
-import { cron } from './cron'
 
 export async function initServer() {
-  cron()
   const schema = await buildSchema({
     resolvers: [SetResolver],
     emitSchemaFile: resolve(__dirname, './schema.gql'),

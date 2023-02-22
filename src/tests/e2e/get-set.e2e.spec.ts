@@ -7,6 +7,7 @@ import { prisma } from '@/infra/database/prisma'
 import { PrismaSetsRepository } from '@/infra/database/prisma/repositories/prisma-sets-repository'
 import { initServer } from '@/server'
 
+import { makeCard } from '../factories/card-factory'
 import { makeSet } from '../factories/set-factory'
 import { GraphQlResponse } from './response'
 
@@ -45,7 +46,9 @@ describe('Get Sets', () => {
   })
 
   it('should be able to get a set by id', async () => {
-    const { id } = await setsRepository.create(makeSet())
+    const newSet = makeSet()
+    newSet.cards = [makeCard()]
+    const { id } = await setsRepository.create(newSet)
     const response = await request<SetResponse>(serverUrl)
       .query(getSet)
       .variables({
