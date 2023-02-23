@@ -4,6 +4,7 @@ import { Replace } from '@/application/helpers/replace'
 
 import { type Color } from './color'
 import { type Format } from './format'
+import { Set } from './set'
 import { type Version } from './version'
 
 export interface CardProps {
@@ -45,9 +46,9 @@ export class Card {
 
   private _faces: Card[]
 
-  private _faceOfId: string
+  private _set: Set
 
-  private _face: Card
+  private _faceOfId: string
 
   private _imageUri: string | null
 
@@ -176,19 +177,19 @@ export class Card {
     this._faces = cards
   }
 
-  public get face() {
-    return this._face
-  }
-
-  public set face(card: Card) {
-    this._face = card
-  }
-
   public get imageUri() {
     return this._imageUri
   }
 
   public set imageUri(uri: string | null) {
     this._imageUri = uri
+  }
+
+  public get set() {
+    return this._set
+  }
+
+  public set set(set: Set) {
+    this._set = set
   }
 }

@@ -20,9 +20,9 @@ type CardsResponse = GraphQlResponse<'set', Cards>
 
 type SetResponse = GraphQlResponse<'set', Set>
 
-const getSet = gql`
-  query getSet($filters: SetFilters!) {
-    set(filters: $filters) {
+const getSetQuery = gql`
+  query getSet($setFilters: SetFilters!) {
+    set(setFilters: $setFilters) {
       id
       name
       code
@@ -31,10 +31,32 @@ const getSet = gql`
   }
 `
 
-const getCards = gql`
-  query getCards($filters: SetFilters!) {
-    set(filters: $filters) {
+const getCardsQuery = gql`
+  query getCards($setFilters: SetFilters!) {
+    set(setFilters: $setFilters) {
       cards {
+        id
+        name
+        rarity
+        type
+        colors
+        formats
+        versions
+        faces {
+          id
+          name
+          type
+          colors
+        }
+      }
+    }
+  }
+`
+
+const getCardsWithNameFilter = gql`
+  query getCards($setFilters: SetFilters!, $cardsFilters: CardFilters) {
+    set(setFilters: $setFilters) {
+      cards(cardsFilters: $cardsFilters) {
         id
         name
         rarity
@@ -79,9 +101,9 @@ describe('Get Sets', () => {
     newSet.cards = [makeCard()]
     const { id } = await setsRepository.create(newSet)
     const response = await request<SetResponse>(serverUrl)
-      .query(getSet)
+      .query(getSetQuery)
       .variables({
-        filters: {
+        setFilters: {
           id,
         },
       })
@@ -91,9 +113,9 @@ describe('Get Sets', () => {
 
   it('should not be able to get a set with invalid id', async () => {
     const response = await request<SetResponse>(serverUrl)
-      .query(getSet)
+      .query(getSetQuery)
       .variables({
-        filters: {
+        setFilters: {
           id: 'wrong-id',
         },
       })
@@ -110,9 +132,9 @@ describe('Get Sets', () => {
     const { id } = await setsRepository.create(newSet)
 
     const response = await request<CardsResponse>(serverUrl)
-      .query(getCards)
+      .query(getCardsQuery)
       .variables({
-        filters: {
+        setFilters: {
           id,
         },
       })
@@ -120,5 +142,30 @@ describe('Get Sets', () => {
     expect(response.errors).not.toBeDefined()
     expect(response.data?.set).toBeDefined()
     expect(response.data?.set.cards).toHaveLength(1)
+    expect(response.data?.set.cards[0].faces).toHaveLength(1)
+  })
+
+  it('should be able to get cards with filter name', async () => {
+    const newSet = makeSet()
+    const setCard = makeCard({ name: 'Creature' })
+    setCard.faces = [makeCard()]
+    newSet.cards = [setCard, makeCard()]
+
+    const { id } = await setsRepository.create(newSet)
+
+    const response = await request<CardsResponse>(serverUrl)
+      .query(getCardsWithNameFilter)
+      .variables({
+        setFilters: {
+          id,
+        },
+        cardsFilters: {
+          name: 'creature',
+        },
+      })
+    expect(response.errors).not.toBeDefined()
+    expect(response.data?.set).toBeDefined()
+    expect(response.data?.set.cards).toHaveLength(1)
+    expect(response.data?.set.cards[0].faces).toHaveLength(1)
   })
 })

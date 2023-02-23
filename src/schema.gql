@@ -14,6 +14,10 @@ type Card {
   versions: [String!]!
 }
 
+input CardFilters {
+  name: String!
+}
+
 type Face {
   colors: [String!]!
   id: String!
@@ -22,11 +26,11 @@ type Face {
 }
 
 type Query {
-  set(filters: SetFilters!): Set
+  set(setFilters: SetFilters!): Set
 }
 
 type Set {
-  cards: [Card!]!
+  cards(cardsFilters: CardFilters): [Card!]!
   code: String!
   id: String!
   name: String!

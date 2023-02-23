@@ -20,4 +20,9 @@ describe('Find set use case', () => {
     expect(set).toBeTruthy()
     expect(set).toMatchObject(setProps)
   })
+
+  it('should be able to receive a null with invalid id', async () => {
+    const set = await findSetUseCase.execute({ id: 'wrong-id' })
+    expect(set).toBeNull()
+  })
 })

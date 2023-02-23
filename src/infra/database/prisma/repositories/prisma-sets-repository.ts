@@ -11,13 +11,6 @@ export class PrismaSetsRepository implements SetsRepository {
       where: {
         id,
       },
-      include: {
-        cards: {
-          include: {
-            faces: true,
-          },
-        },
-      },
     })
 
     if (set) {
