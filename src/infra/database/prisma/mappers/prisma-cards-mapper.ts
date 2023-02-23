@@ -79,6 +79,10 @@ export class PrismaCardsMapper {
       })
     }
 
+    if (raw.faceOfId) {
+      card.faceOfId = raw.faceOfId
+    }
+
     return card
   }
 

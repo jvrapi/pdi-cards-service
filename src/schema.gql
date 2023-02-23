@@ -22,7 +22,7 @@ type Face {
 }
 
 type Query {
-  set(filters: SetFilters!): Set!
+  set(filters: SetFilters!): Set
 }
 
 type Set {
