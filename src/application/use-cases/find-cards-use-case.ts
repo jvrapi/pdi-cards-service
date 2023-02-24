@@ -8,6 +8,7 @@ interface Request {
   setId: string
   name?: string
   type?: string
+  id?: string
 }
 
 @injectable()
@@ -17,11 +18,12 @@ export class FindCardsUseCase {
     private cardsRepository: CardsRepository,
   ) {}
 
-  async execute({ setId, name, type }: Request) {
+  async execute({ setId, name, type, id }: Request) {
     const cards = await this.cardsRepository.findByFilters({
       setId,
       name,
       type,
+      id,
     })
     return cards.map((card) => {
       const faces =

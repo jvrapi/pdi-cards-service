@@ -55,4 +55,22 @@ describe('Find cards by set id', () => {
 
     expect(cards).toHaveLength(1)
   })
+
+  it('should be able to get a card by id', async () => {
+    const set = makeSet()
+    const firstCard = makeCard()
+    const secondCard = makeCard()
+    firstCard.faces = [makeCard()]
+    firstCard.set = set
+    secondCard.set = set
+
+    const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
+    const findCardsUseCase = new FindCardsUseCase(cardsRepository)
+    const cards = await findCardsUseCase.execute({
+      setId: set.id,
+      id: firstCard.id,
+    })
+
+    expect(cards).toHaveLength(1)
+  })
 })

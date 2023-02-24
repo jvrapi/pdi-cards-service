@@ -12,16 +12,22 @@ export class PrismaCardsRepository implements CardsRepository {
     setId,
     name,
     type,
+    id,
   }: FindByFiltersProps): Promise<Card[]> {
     const cards = await prisma.card.findMany({
       where: {
-        setId,
-        faceOfId: null,
-        name: name && {
-          contains: name,
-        },
-        typeLine: type && {
-          contains: type,
+        AND: {
+          setId,
+          faceOfId: null,
+          OR: {
+            name: name && {
+              contains: name,
+            },
+            typeLine: type && {
+              contains: type,
+            },
+            id,
+          },
         },
       },
       include: {

@@ -4,6 +4,7 @@ export interface FindByFiltersProps {
   setId: string
   name?: string
   type?: string
+  id?: string
 }
 export interface CardsRepository {
   findByFilters(data: FindByFiltersProps): Promise<Card[]>

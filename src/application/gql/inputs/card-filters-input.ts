@@ -7,4 +7,7 @@ export class CardFilters {
 
   @Field(() => String, { nullable: true })
   type?: string
+
+  @Field(() => String, { nullable: true })
+  id?: string
 }

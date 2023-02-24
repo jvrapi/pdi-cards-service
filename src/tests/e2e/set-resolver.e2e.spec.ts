@@ -53,7 +53,7 @@ const getCardsQuery = gql`
   }
 `
 
-const getCardsWithNameFilter = gql`
+const getCardsWithFiltersQuery = gql`
   query getCards($setFilters: SetFilters!, $cardsFilters: CardFilters) {
     set(setFilters: $setFilters) {
       cards(cardsFilters: $cardsFilters) {
@@ -178,7 +178,7 @@ describe('Get Sets', () => {
     const { id } = await setsRepository.create(newSet)
 
     const response = await request<CardsResponse>(serverUrl)
-      .query(getCardsWithNameFilter)
+      .query(getCardsWithFiltersQuery)
       .variables({
         setFilters: {
           id,
@@ -202,13 +202,45 @@ describe('Get Sets', () => {
     const { id } = await setsRepository.create(newSet)
 
     const response = await request<CardsResponse>(serverUrl)
-      .query(getCardsWithNameFilter)
+      .query(getCardsWithFiltersQuery)
       .variables({
         setFilters: {
           id,
         },
         cardsFilters: {
           type: 'creature',
+        },
+      })
+    expect(response.errors).not.toBeDefined()
+    expect(response.data?.set).toBeDefined()
+    expect(response.data?.set.cards).toHaveLength(1)
+    expect(response.data?.set.cards[0].faces).toHaveLength(1)
+  })
+
+  it('should be able to get a card by id', async () => {
+    const newSet = makeSet()
+    const setCard = makeCard()
+    setCard.faces = [makeCard()]
+    newSet.cards = [setCard, makeCard()]
+
+    const { id } = await setsRepository.create(newSet)
+
+    const setCards = await request<CardsResponse>(serverUrl)
+      .query(getCardsWithFiltersQuery)
+      .variables({
+        setFilters: {
+          id,
+        },
+      })
+
+    const response = await request<CardsResponse>(serverUrl)
+      .query(getCardsWithFiltersQuery)
+      .variables({
+        setFilters: {
+          id,
+        },
+        cardsFilters: {
+          id: setCards.data?.set.cards[0].id,
         },
       })
     expect(response.errors).not.toBeDefined()

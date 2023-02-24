@@ -12,7 +12,7 @@ export class InMemoryCardsRepository implements CardsRepository {
   }
 
   async findByFilters(data: FindByFiltersProps): Promise<Card[]> {
-    const { setId, name, type } = data
+    const { setId, name, type, id } = data
     let cards = this.cards.filter((card) => card.set.id === setId)
 
     if (name) {
@@ -25,6 +25,10 @@ export class InMemoryCardsRepository implements CardsRepository {
       cards = cards.filter((card) =>
         card.typeLine?.toLowerCase().includes(type.toLowerCase()),
       )
+    }
+
+    if (id) {
+      cards = cards.filter((card) => card.id === id)
     }
     return cards
   }
