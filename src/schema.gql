@@ -39,5 +39,6 @@ type Set {
 }
 
 input SetFilters {
+  code: String
   id: String
 }

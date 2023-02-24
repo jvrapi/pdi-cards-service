@@ -14,10 +14,10 @@ import { FindSetUseCase } from '../use-cases/find-set-use-case'
 export class SetResolver {
   @Query(() => Set, { nullable: true })
   async set(
-    @Arg('setFilters', () => SetFilters) { id }: SetFilters,
+    @Arg('setFilters', () => SetFilters) { id, code }: SetFilters,
   ): Promise<Set | null> {
     const findSetUseCase = container.resolve(FindSetUseCase)
-    const set = await findSetUseCase.execute({ id })
+    const set = await findSetUseCase.execute({ id, code })
     return set
   }
 

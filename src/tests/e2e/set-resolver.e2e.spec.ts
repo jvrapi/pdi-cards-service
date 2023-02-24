@@ -111,6 +111,21 @@ describe('Get Sets', () => {
     expect(response.data?.set).toBeDefined()
   })
 
+  it('should be able to get a set by code', async () => {
+    const newSet = makeSet()
+    newSet.cards = [makeCard()]
+    await setsRepository.create(newSet)
+    const response = await request<SetResponse>(serverUrl)
+      .query(getSetQuery)
+      .variables({
+        setFilters: {
+          code: newSet.code,
+        },
+      })
+    expect(response.errors).not.toBeDefined()
+    expect(response.data?.set).toBeDefined()
+  })
+
   it('should not be able to get a set with invalid id', async () => {
     const response = await request<SetResponse>(serverUrl)
       .query(getSetQuery)
@@ -121,6 +136,15 @@ describe('Get Sets', () => {
       })
     expect(response.errors).not.toBeDefined()
     expect(response.data?.set).toBeNull()
+  })
+
+  it('should not be able to get a set with no filter', async () => {
+    const response = await request<SetResponse>(serverUrl)
+      .query(getSetQuery)
+      .variables({
+        setFilters: {},
+      })
+    expect(response.errors).toBeDefined()
   })
 
   it('should be able to get a set cards', async () => {

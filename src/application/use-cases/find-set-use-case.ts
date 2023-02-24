@@ -1,9 +1,11 @@
 import { inject, injectable } from 'tsyringe'
 
+import { ApiError } from '../errors/error'
 import { SetsRepository } from '../repositories/sets-repository'
 
 interface Filters {
-  id: string
+  id?: string
+  code?: string
 }
 
 @injectable()
@@ -13,11 +15,16 @@ export class FindSetUseCase {
     private setsRepository: SetsRepository,
   ) {}
 
-  async execute({ id }: Filters) {
-    if (id) {
-      return this.setsRepository.findById(id)
+  async execute({ id, code }: Filters) {
+    if (id || code) {
+      return this.setsRepository.findByFilters({
+        code,
+        id,
+      })
     }
 
-    return null
+    throw new ApiError(
+      'You should inform at least one filter to get a set details',
+    )
   }
 }
