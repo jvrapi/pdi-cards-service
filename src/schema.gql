@@ -15,7 +15,8 @@ type Card {
 }
 
 input CardFilters {
-  name: String!
+  name: String
+  type: String
 }
 
 type Face {

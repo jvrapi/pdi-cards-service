@@ -1,7 +1,7 @@
 import { type Card } from '@/application/entities/card'
 import {
   CardsRepository,
-  FindBySetIdProps,
+  FindByFiltersProps,
 } from '@/application/repositories/cards-repository'
 
 export class InMemoryCardsRepository implements CardsRepository {
@@ -11,13 +11,19 @@ export class InMemoryCardsRepository implements CardsRepository {
     this.cards.push(...cards)
   }
 
-  async findBySetId(data: FindBySetIdProps): Promise<Card[]> {
-    const { setId, name } = data
+  async findByFilters(data: FindByFiltersProps): Promise<Card[]> {
+    const { setId, name, type } = data
     let cards = this.cards.filter((card) => card.set.id === setId)
 
     if (name) {
       cards = cards.filter((card) =>
         card.name.toLowerCase().includes(name.toLowerCase()),
+      )
+    }
+
+    if (type) {
+      cards = cards.filter((card) =>
+        card.typeLine?.toLowerCase().includes(type.toLowerCase()),
       )
     }
     return cards

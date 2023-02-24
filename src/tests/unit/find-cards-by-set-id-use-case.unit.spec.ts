@@ -37,4 +37,22 @@ describe('Find cards by set id', () => {
 
     expect(cards).toHaveLength(1)
   })
+
+  it('should be able to get cards with type filter', async () => {
+    const set = makeSet()
+    const firstCard = makeCard({ typeLine: 'Creature' })
+    const secondCard = makeCard()
+    firstCard.faces = [makeCard()]
+    firstCard.set = set
+    secondCard.set = set
+
+    const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
+    const findCardsBySetIdUseCase = new FindCardsBySetIdUseCase(cardsRepository)
+    const cards = await findCardsBySetIdUseCase.execute({
+      setId: set.id,
+      type: 'creature',
+    })
+
+    expect(cards).toHaveLength(1)
+  })
 })

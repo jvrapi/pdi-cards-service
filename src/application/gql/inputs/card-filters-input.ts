@@ -2,6 +2,9 @@ import { Field, InputType } from 'type-graphql'
 
 @InputType()
 export class CardFilters {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   name?: string
+
+  @Field(() => String, { nullable: true })
+  type?: string
 }

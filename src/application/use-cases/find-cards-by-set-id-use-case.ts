@@ -7,6 +7,7 @@ import { CardsRepository } from '../repositories/cards-repository'
 interface Request {
   setId: string
   name?: string
+  type?: string
 }
 
 @injectable()
@@ -16,8 +17,12 @@ export class FindCardsBySetIdUseCase {
     private cardsRepository: CardsRepository,
   ) {}
 
-  async execute({ setId, name }: Request) {
-    const cards = await this.cardsRepository.findBySetId({ setId, name })
+  async execute({ setId, name, type }: Request) {
+    const cards = await this.cardsRepository.findByFilters({
+      setId,
+      name,
+      type,
+    })
     return cards.map((card) => {
       const faces =
         card.faces?.map((face) => {

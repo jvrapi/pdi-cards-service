@@ -1,9 +1,10 @@
 import { Card } from '../entities/card'
 
-export interface FindBySetIdProps {
+export interface FindByFiltersProps {
   setId: string
   name?: string
+  type?: string
 }
 export interface CardsRepository {
-  findBySetId(data: FindBySetIdProps): Promise<Card[]>
+  findByFilters(data: FindByFiltersProps): Promise<Card[]>
 }

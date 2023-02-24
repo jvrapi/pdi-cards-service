@@ -145,7 +145,7 @@ describe('Get Sets', () => {
     expect(response.data?.set.cards[0].faces).toHaveLength(1)
   })
 
-  it('should be able to get cards with filter name', async () => {
+  it('should be able to get cards with name filter', async () => {
     const newSet = makeSet()
     const setCard = makeCard({ name: 'Creature' })
     setCard.faces = [makeCard()]
@@ -161,6 +161,30 @@ describe('Get Sets', () => {
         },
         cardsFilters: {
           name: 'creature',
+        },
+      })
+    expect(response.errors).not.toBeDefined()
+    expect(response.data?.set).toBeDefined()
+    expect(response.data?.set.cards).toHaveLength(1)
+    expect(response.data?.set.cards[0].faces).toHaveLength(1)
+  })
+
+  it('should be able to get cards with type filter', async () => {
+    const newSet = makeSet()
+    const setCard = makeCard({ typeLine: 'Creature' })
+    setCard.faces = [makeCard()]
+    newSet.cards = [setCard, makeCard()]
+
+    const { id } = await setsRepository.create(newSet)
+
+    const response = await request<CardsResponse>(serverUrl)
+      .query(getCardsWithNameFilter)
+      .variables({
+        setFilters: {
+          id,
+        },
+        cardsFilters: {
+          type: 'creature',
         },
       })
     expect(response.errors).not.toBeDefined()
