@@ -7,7 +7,7 @@ import { Set } from '@/application/gql/models/set-model'
 
 import { CardFilters } from '../gql/inputs/card-filters-input'
 import { Card } from '../gql/models/card-model'
-import { FindCardsBySetIdUseCase } from '../use-cases/find-cards-by-set-id-use-case'
+import { FindCardsUseCase } from '../use-cases/find-cards-use-case'
 import { FindSetUseCase } from '../use-cases/find-set-use-case'
 
 @Resolver(() => Set)
@@ -28,7 +28,7 @@ export class SetResolver {
     @Arg('cardsFilters', () => CardFilters, { nullable: true })
     filters?: CardFilters,
   ) {
-    const findCardsBySetIdUseCase = container.resolve(FindCardsBySetIdUseCase)
-    return findCardsBySetIdUseCase.execute({ setId, ...filters })
+    const findCardsUseCase = container.resolve(FindCardsUseCase)
+    return findCardsUseCase.execute({ setId, ...filters })
   }
 }

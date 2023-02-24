@@ -11,7 +11,7 @@ interface Request {
 }
 
 @injectable()
-export class FindCardsBySetIdUseCase {
+export class FindCardsUseCase {
   constructor(
     @inject('CardsRepository')
     private cardsRepository: CardsRepository,

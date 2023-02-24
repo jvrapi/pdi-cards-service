@@ -15,6 +15,7 @@ type Card {
 }
 
 input CardFilters {
+  id: String
   name: String
   type: String
 }

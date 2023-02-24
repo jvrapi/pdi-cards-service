@@ -1,4 +1,4 @@
-import { FindCardsBySetIdUseCase } from '@/application/use-cases/find-cards-by-set-id-use-case'
+import { FindCardsUseCase } from '@/application/use-cases/find-cards-use-case'
 
 import { makeCard } from '../factories/card-factory'
 import { makeSet } from '../factories/set-factory'
@@ -12,8 +12,8 @@ describe('Find cards by set id', () => {
     card.set = set
 
     const cardsRepository = new InMemoryCardsRepository([card])
-    const findCardsBySetIdUseCase = new FindCardsBySetIdUseCase(cardsRepository)
-    const cards = await findCardsBySetIdUseCase.execute({
+    const findCardsUseCase = new FindCardsUseCase(cardsRepository)
+    const cards = await findCardsUseCase.execute({
       setId: set.id,
     })
 
@@ -29,8 +29,8 @@ describe('Find cards by set id', () => {
     secondCard.set = set
 
     const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
-    const findCardsBySetIdUseCase = new FindCardsBySetIdUseCase(cardsRepository)
-    const cards = await findCardsBySetIdUseCase.execute({
+    const findCardsUseCase = new FindCardsUseCase(cardsRepository)
+    const cards = await findCardsUseCase.execute({
       setId: set.id,
       name: 'creature',
     })
@@ -47,8 +47,8 @@ describe('Find cards by set id', () => {
     secondCard.set = set
 
     const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
-    const findCardsBySetIdUseCase = new FindCardsBySetIdUseCase(cardsRepository)
-    const cards = await findCardsBySetIdUseCase.execute({
+    const findCardsUseCase = new FindCardsUseCase(cardsRepository)
+    const cards = await findCardsUseCase.execute({
       setId: set.id,
       type: 'creature',
     })
