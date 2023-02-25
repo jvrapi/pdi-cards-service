@@ -3,7 +3,7 @@ import { Color } from '@/application/entities/color'
 import { Format } from '@/application/entities/format'
 import { Version } from '@/application/entities/version'
 
-type Override = Partial<CardProps>
+export type Override = Partial<CardProps>
 export function makeCard(override: Override = {}) {
   const card = new Card({
     name: 'name example',

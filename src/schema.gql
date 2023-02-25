@@ -8,8 +8,10 @@ type Card {
   faces: [Face!]
   formats: [String!]!
   id: String!
+  imageUri: String!
   name: String!
   rarity: String!
+  set: Set!
   type: String!
   versions: [String!]!
 }
@@ -17,29 +19,27 @@ type Card {
 input CardFilters {
   id: String
   name: String
+  skip: Int
+  take: Int!
   type: String
 }
 
 type Face {
   colors: [String!]!
   id: String!
+  imageUri: String!
   name: String!
   type: String!
 }
 
 type Query {
-  set(setFilters: SetFilters!): Set
+  cards(cardsFilters: CardFilters!): [Card!]!
 }
 
 type Set {
-  cards(cardsFilters: CardFilters): [Card!]!
   code: String!
+  iconUri: String!
   id: String!
   name: String!
   releasedAt: String!
-}
-
-input SetFilters {
-  code: String
-  id: String
 }

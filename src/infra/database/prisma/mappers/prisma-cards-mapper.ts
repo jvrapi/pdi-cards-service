@@ -1,13 +1,15 @@
-import { type Card as RawCard, Prisma } from '@prisma/client'
+import { type Card as RawCard, Prisma, Set as RawSet } from '@prisma/client'
 
 import { Card } from '@/application/entities/card'
 
 import { PrismaColorsMapper } from './prisma-colors-mapper'
 import { PrismaFormatsMapper } from './prisma-formats-mapper'
+import { PrismaSetsMapper } from './prisma-sets-mapper'
 import { PrismaVersionsMapper } from './prisma-versions-mapper'
 
 type RawResponse = RawCard & {
   faces?: RawCard[]
+  set: RawSet
 }
 
 export class PrismaCardsMapper {
@@ -81,6 +83,10 @@ export class PrismaCardsMapper {
 
     if (raw.faceOfId) {
       card.faceOfId = raw.faceOfId
+    }
+
+    if (raw.set) {
+      card.set = PrismaSetsMapper.toDomain(raw.set)
     }
 
     return card

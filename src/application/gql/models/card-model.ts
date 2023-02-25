@@ -27,4 +27,7 @@ export class Card {
 
   @Field(() => [Face], { nullable: true })
   faces?: Face[]
+
+  @Field(() => String)
+  imageUri: string
 }

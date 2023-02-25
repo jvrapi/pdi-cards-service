@@ -14,7 +14,7 @@ describe('Find cards by set id', () => {
     const cardsRepository = new InMemoryCardsRepository([card])
     const findCardsUseCase = new FindCardsUseCase(cardsRepository)
     const cards = await findCardsUseCase.execute({
-      setId: set.id,
+      take: 10,
     })
 
     expect(cards).toHaveLength(1)
@@ -31,7 +31,7 @@ describe('Find cards by set id', () => {
     const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
     const findCardsUseCase = new FindCardsUseCase(cardsRepository)
     const cards = await findCardsUseCase.execute({
-      setId: set.id,
+      take: 10,
       name: 'creature',
     })
 
@@ -49,7 +49,7 @@ describe('Find cards by set id', () => {
     const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
     const findCardsUseCase = new FindCardsUseCase(cardsRepository)
     const cards = await findCardsUseCase.execute({
-      setId: set.id,
+      take: 10,
       type: 'creature',
     })
 
@@ -67,7 +67,7 @@ describe('Find cards by set id', () => {
     const cardsRepository = new InMemoryCardsRepository([firstCard, secondCard])
     const findCardsUseCase = new FindCardsUseCase(cardsRepository)
     const cards = await findCardsUseCase.execute({
-      setId: set.id,
+      take: 10,
       id: firstCard.id,
     })
 

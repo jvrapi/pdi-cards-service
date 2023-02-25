@@ -1,6 +1,6 @@
 import { Set, type SetProps } from '@/application/entities/set'
 
-type Override = Partial<SetProps>
+export type Override = Partial<SetProps>
 
 export function makeSet(override: Override = {}) {
   return new Set({

@@ -1,14 +1,35 @@
 import { inject, injectable } from 'tsyringe'
 
-import { Card } from '../gql/models/card-model'
-import { Face } from '../gql/models/face-model'
+import { Set } from '../entities/set'
 import { CardsRepository } from '../repositories/cards-repository'
 
 interface Request {
-  setId: string
+  take: number
+  skip?: number
   name?: string
   type?: string
   id?: string
+}
+
+interface Face {
+  id: string
+  name: string
+  type: string
+  colors: string[]
+  imageUri: string
+}
+
+export interface FindCardsUseCaseResponse {
+  id: string
+  name: string
+  rarity: string
+  type: string
+  colors: string[]
+  formats: string[]
+  versions: string[]
+  faces: Face[]
+  set: Set
+  imageUri: string
 }
 
 @injectable()
@@ -18,26 +39,36 @@ export class FindCardsUseCase {
     private cardsRepository: CardsRepository,
   ) {}
 
-  async execute({ setId, name, type, id }: Request) {
+  async execute({
+    name,
+    type,
+    id,
+    take,
+    skip,
+  }: Request): Promise<FindCardsUseCaseResponse[]> {
+    const { IMAGES_SERVICE_URL } = process.env
     const cards = await this.cardsRepository.findByFilters({
-      setId,
       name,
       type,
       id,
+      take,
+      skip,
     })
+
     return cards.map((card) => {
       const faces =
         card.faces?.map((face) => {
-          const faceModel: Face = {
+          const faceModel = {
             id: face.id,
             name: face.name,
             type: face.typeLine ?? '',
             colors: face.colors.map((color) => color.value),
+            imageUri: `${IMAGES_SERVICE_URL}/${face.id}`,
           }
           return faceModel
         }) || []
 
-      const cardModel: Card = {
+      const cardModel = {
         id: card.id,
         name: card.name,
         rarity: card.rarity ?? '',
@@ -46,6 +77,8 @@ export class FindCardsUseCase {
         formats: card.formats.map((format) => format.value),
         versions: card.versions.map((version) => version.value),
         faces,
+        set: card.set,
+        imageUri: `${IMAGES_SERVICE_URL}/${card.id}`,
       }
 
       return cardModel

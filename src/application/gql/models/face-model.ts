@@ -13,4 +13,7 @@ export class Face {
 
   @Field(() => [String])
   colors: string[]
+
+  @Field(() => String)
+  imageUri: string
 }

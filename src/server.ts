@@ -9,11 +9,11 @@ import { container } from 'tsyringe'
 import { buildSchema } from 'type-graphql'
 
 import { formatError } from './application/middlewares/error-middleware'
-import { SetResolver } from './application/resolvers/set-resolver'
+import { CardResolver } from './application/resolvers/card-resolver'
 
 export async function initServer() {
   const schema = await buildSchema({
-    resolvers: [SetResolver],
+    resolvers: [CardResolver],
     emitSchemaFile: resolve(__dirname, './schema.gql'),
     container: { get: (cls) => container.resolve(cls) },
   })

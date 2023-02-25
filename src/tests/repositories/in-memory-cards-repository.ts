@@ -12,8 +12,8 @@ export class InMemoryCardsRepository implements CardsRepository {
   }
 
   async findByFilters(data: FindByFiltersProps): Promise<Card[]> {
-    const { setId, name, type, id } = data
-    let cards = this.cards.filter((card) => card.set.id === setId)
+    const { name, type, id } = data
+    let cards = this.cards
 
     if (name) {
       cards = cards.filter((card) =>

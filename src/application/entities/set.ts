@@ -2,8 +2,6 @@ import { randomUUID } from 'node:crypto'
 
 import { Replace } from '@/application/helpers/replace'
 
-import { Card } from './card'
-
 export interface SetProps {
   code: string
   name: string
@@ -26,8 +24,6 @@ export class Set {
   private readonly props: SetProps
 
   private _imageUri: string
-
-  private _cards: Card[]
 
   constructor(props: Replace<SetProps, OptionalSetProps>, id?: string) {
     this._id = id ?? randomUUID()
@@ -104,13 +100,5 @@ export class Set {
 
   public set imageUri(image: string) {
     this._imageUri = image
-  }
-
-  public get cards() {
-    return this._cards
-  }
-
-  public set cards(cards: Card[]) {
-    this._cards = cards
   }
 }

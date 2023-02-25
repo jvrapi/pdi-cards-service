@@ -1,7 +1,8 @@
 import { Card } from '../entities/card'
 
 export interface FindByFiltersProps {
-  setId: string
+  take: number
+  skip?: number
   name?: string
   type?: string
   id?: string

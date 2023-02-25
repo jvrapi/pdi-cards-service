@@ -9,15 +9,15 @@ import { PrismaCardsMapper } from '../mappers/prisma-cards-mapper'
 
 export class PrismaCardsRepository implements CardsRepository {
   async findByFilters({
-    setId,
     name,
     type,
     id,
+    take,
+    skip,
   }: FindByFiltersProps): Promise<Card[]> {
     const cards = await prisma.card.findMany({
       where: {
         AND: {
-          setId,
           faceOfId: null,
           OR: {
             name: name && {
@@ -31,8 +31,11 @@ export class PrismaCardsRepository implements CardsRepository {
         },
       },
       include: {
+        set: true,
         faces: true,
       },
+      take,
+      skip,
     })
 
     return cards.map(PrismaCardsMapper.toDomain)

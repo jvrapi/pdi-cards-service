@@ -13,4 +13,7 @@ export class Set {
 
   @Field(() => String)
   releasedAt: string
+
+  @Field(() => String)
+  iconUri: string
 }
