@@ -23,7 +23,13 @@ export async function initServer() {
     formatError,
   })
 
-  const { url } = await startStandaloneServer(server)
+  const port = process.env.APP_PORT ? +process.env.APP_PORT : 4000
+
+  const { url } = await startStandaloneServer(server, {
+    listen: {
+      port,
+    },
+  })
 
   console.log(`🚀 Server ready on ${url} 🚀`)
 
