@@ -1,10 +1,11 @@
+import { exec } from 'node:child_process'
+import { randomBytes } from 'node:crypto'
+import { promisify } from 'node:util'
+
 import { EnvironmentContext, JestEnvironmentConfig } from '@jest/environment'
 import { config as dotEnvConfig } from 'dotenv'
 import NodeEnvironment from 'jest-environment-node'
 import { createConnection } from 'mysql2/promise'
-import { exec } from 'node:child_process'
-import { randomBytes } from 'node:crypto'
-import { promisify } from 'node:util'
 
 dotEnvConfig({ path: '.env.test' })
 
