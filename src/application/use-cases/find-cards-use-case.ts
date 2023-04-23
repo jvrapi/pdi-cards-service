@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 
 import { Set } from '../entities/set'
-import { CardsRepository } from '../repositories/cards-repository'
+import { type CardsRepository } from '../repositories/cards-repository'
 
 interface Request {
   take: number

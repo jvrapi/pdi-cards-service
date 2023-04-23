@@ -7,7 +7,7 @@ import { CardFilters } from '../gql/inputs/card-filters-input'
 import { Card } from '../gql/models/card-model'
 import {
   FindCardsUseCase,
-  FindCardsUseCaseResponse,
+  type FindCardsUseCaseResponse,
 } from '../use-cases/find-cards-use-case'
 
 const { IMAGES_SERVICE_URL } = process.env
