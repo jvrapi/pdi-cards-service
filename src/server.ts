@@ -9,6 +9,7 @@ import { buildSchema } from 'type-graphql'
 import { formatError } from './application/middlewares/error-middleware'
 import { NewRelicPlugin } from './application/plugins/new-relic-plugin'
 import { CardResolver } from './application/resolvers/card-resolver'
+import { RabbitMQ } from './infra/messaging/rabbitmq'
 
 export async function initServer() {
   const schema = await buildSchema({
@@ -23,6 +24,8 @@ export async function initServer() {
   })
 
   const port = process.env.APP_PORT ? +process.env.APP_PORT : 4000
+
+  await RabbitMQ.init()
 
   const { url } = await startStandaloneServer(server, {
     listen: {

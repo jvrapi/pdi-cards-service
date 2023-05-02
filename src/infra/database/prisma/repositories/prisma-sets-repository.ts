@@ -24,23 +24,4 @@ export class PrismaSetsRepository implements SetsRepository {
 
     return null
   }
-
-  async create(data: Set): Promise<{ id: string }> {
-    const setCreated = await prisma.set.create({
-      data: PrismaSetsMapper.toPrisma(data),
-      select: {
-        id: true,
-      },
-    })
-
-    // await Promise.all(
-    //   data.cards.map(async (card) => {
-    //     await prisma.card.create({
-    //       data: PrismaCardsMapper.toPrisma(card, setCreated.id),
-    //     })
-    //   }),
-    // )
-
-    return setCreated
-  }
 }

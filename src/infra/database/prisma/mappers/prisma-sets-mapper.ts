@@ -8,17 +8,6 @@ type RawResponse = RawSet & {
   })[]
 }
 export class PrismaSetsMapper {
-  static toPrisma(set: Set) {
-    return {
-      code: set.code,
-      name: set.name,
-      type: set.type,
-      releasedAt: set.releasedAt,
-      isDigital: set.isDigital,
-      isFoilOnly: set.isFoilOnly,
-    }
-  }
-
   static toDomain(raw: RawResponse): Set {
     const set = new Set(
       {

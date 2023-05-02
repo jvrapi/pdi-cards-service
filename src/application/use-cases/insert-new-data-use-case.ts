@@ -1,4 +1,8 @@
-export interface Face {
+import { inject, injectable } from 'tsyringe'
+
+import { MessagingRepository } from '../repositories/messaging-repository'
+
+interface Face {
   id: string
   imageUri: string
   name: string
@@ -13,7 +17,7 @@ export interface Face {
   cmc: number | null
 }
 
-export interface Card {
+interface Card {
   name: string
   language: string
   layout: string | null
@@ -42,7 +46,7 @@ export interface Card {
   faces: Face[]
 }
 
-export interface Set {
+interface Set {
   id: string
   name: string
   code: string
@@ -54,7 +58,15 @@ export interface Set {
   cards: Card[]
 }
 
-export interface MessagingRepository {
-  getAllSetsCode(): Promise<string[]>
-  updateData(set: Set): Promise<void>
+@injectable()
+export class InsertNewDataUseCase {
+  constructor(
+    @inject('MessagingRepository')
+    private messageRepository: MessagingRepository,
+  ) {}
+
+  async execute(set: Set) {
+    console.log(set.code)
+    await this.messageRepository.updateData(set)
+  }
 }

@@ -6,6 +6,5 @@ export interface FindByFiltersProps {
 }
 
 export interface SetsRepository {
-  create: (set: Set) => Promise<{ id: string }>
   findByFilters: (data: FindByFiltersProps) => Promise<Set | null>
 }

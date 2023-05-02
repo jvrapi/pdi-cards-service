@@ -7,6 +7,10 @@ import {
 export class InMemorySetsRepository implements SetsRepository {
   private readonly sets: Set[] = []
 
+  async getAll(): Promise<Set[]> {
+    return this.sets
+  }
+
   async findByFilters({ code, id }: FindByFiltersProps): Promise<Set | null> {
     const set = this.sets.find((set) => set.id === id || set.code === code)
 
@@ -15,12 +19,5 @@ export class InMemorySetsRepository implements SetsRepository {
     }
 
     return set
-  }
-
-  async create(set: Set): Promise<{ id: string }> {
-    this.sets.push(set)
-    return {
-      id: set.id,
-    }
   }
 }
