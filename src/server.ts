@@ -1,8 +1,9 @@
 import 'dotenv/config'
 import './container'
 
-import { ApolloServer } from '@apollo/server'
+import { ApolloServer, ApolloServerPlugin } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
+import createNewRelicPlugin from '@newrelic/apollo-server-plugin'
 import { container } from 'tsyringe'
 import { buildSchema } from 'type-graphql'
 
@@ -16,9 +17,12 @@ export async function initServer() {
     container: { get: (cls) => container.resolve(cls) },
   })
 
+  const newRelicPlugin = createNewRelicPlugin<ApolloServerPlugin>({})
+
   const server = new ApolloServer({
     schema,
     formatError,
+    plugins: [newRelicPlugin],
   })
 
   const port = process.env.APP_PORT ? +process.env.APP_PORT : 4000
