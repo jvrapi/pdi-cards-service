@@ -23,4 +23,15 @@ export class PrismaSetsMapper {
 
     return set
   }
+
+  static toPrisma(set: Set) {
+    return {
+      code: set.code,
+      name: set.name,
+      type: set.type,
+      releasedAt: set.releasedAt,
+      isDigital: set.isDigital,
+      isFoilOnly: set.isFoilOnly,
+    }
+  }
 }

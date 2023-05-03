@@ -1,15 +1,13 @@
-import { type Prisma } from '@prisma/client'
-
-import { Color, type ColorName } from '@/application/entities/color'
+import { Color, ColorName } from '@/application/entities/color'
 
 export class PrismaColorsMapper {
-  static toDomain(raw: Prisma.JsonArray): Color[] {
-    return (raw as unknown as ColorName[]).map((name) => new Color(name))
+  static toDomain(raw: string): Color[] {
+    return raw
+      .split(',')
+      .map((name) => new Color(ColorName[name as keyof typeof ColorName]))
   }
 
   static toPrisma(colors: Color[]) {
-    return colors.map(
-      (color) => color.value,
-    ) as unknown as Prisma.InputJsonObject
+    return colors.map((color) => color.value).toString()
   }
 }

@@ -1,10 +1,10 @@
-export type VersionName =
-  | 'oversized'
-  | 'foil'
-  | 'nonFoil'
-  | 'promo'
-  | 'textLess'
-
+export enum VersionName {
+  oversized = 'oversized',
+  foil = 'foil',
+  nonFoil = 'nonFoil',
+  promo = 'promo',
+  textLess = 'textLess',
+}
 export class Version {
   private readonly version: VersionName
 

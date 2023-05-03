@@ -66,7 +66,6 @@ export class InsertNewDataUseCase {
   ) {}
 
   async execute(set: Set) {
-    console.log(set.code)
     await this.messageRepository.updateData(set)
   }
 }

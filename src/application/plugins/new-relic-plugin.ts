@@ -7,9 +7,7 @@ import {
 import newrelic from 'newrelic'
 
 export class NewRelicPlugin implements ApolloServerPlugin {
-  async requestDidStart(
-    requestContext: GraphQLRequestContext<BaseContext>,
-  ): Promise<void | GraphQLRequestListener<BaseContext>> {
+  async requestDidStart(): Promise<void | GraphQLRequestListener<BaseContext>> {
     return {
       async didResolveOperation(requestContext) {
         newrelic.setTransactionName(

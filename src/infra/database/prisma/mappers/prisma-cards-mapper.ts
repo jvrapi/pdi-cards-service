@@ -37,11 +37,9 @@ export class PrismaCardsMapper {
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
         isReprint: raw.isReprint,
-        colors: PrismaColorsMapper.toDomain(raw.colors as Prisma.JsonArray),
-        formats: PrismaFormatsMapper.toDomain(raw.formats as Prisma.JsonArray),
-        versions: PrismaVersionsMapper.toDomain(
-          raw.versions as Prisma.JsonArray,
-        ),
+        colors: PrismaColorsMapper.toDomain(raw.colors),
+        formats: PrismaFormatsMapper.toDomain(raw.formats),
+        versions: PrismaVersionsMapper.toDomain(raw.versions),
       },
       raw.id,
     )
@@ -70,13 +68,9 @@ export class PrismaCardsMapper {
           createdAt: face.createdAt,
           updatedAt: face.updatedAt,
           isReprint: face.isReprint,
-          colors: PrismaColorsMapper.toDomain(face.colors as Prisma.JsonArray),
-          formats: PrismaFormatsMapper.toDomain(
-            face.formats as Prisma.JsonArray,
-          ),
-          versions: PrismaVersionsMapper.toDomain(
-            face.versions as Prisma.JsonArray,
-          ),
+          colors: PrismaColorsMapper.toDomain(face.colors),
+          formats: PrismaFormatsMapper.toDomain(face.formats),
+          versions: PrismaVersionsMapper.toDomain(face.versions),
         })
       })
     }
@@ -120,8 +114,8 @@ export class PrismaCardsMapper {
         createMany: {
           data: card.faces.map((face) => ({
             colors: PrismaColorsMapper.toPrisma(face.colors),
-            formats: [],
-            versions: [],
+            formats: '',
+            versions: '',
             language: face.language,
             name: face.name,
             borderColor: face.borderColor,

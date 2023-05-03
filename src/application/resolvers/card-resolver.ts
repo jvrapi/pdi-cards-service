@@ -20,7 +20,8 @@ export class CardResolver {
     filters: CardFilters,
   ) {
     const findCardsUseCase = container.resolve(FindCardsUseCase)
-    return await findCardsUseCase.execute({ ...filters })
+    const cards = await findCardsUseCase.execute({ ...filters })
+    return cards
   }
 
   @FieldResolver(() => Set)

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.4.0",
+    "@newrelic/apollo-server-plugin": "^3.0.0",
     "@prisma/client": "^4.9.0",
     "amqplib": "^0.10.3",
     "axios": "^1.2.6",

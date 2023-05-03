@@ -878,6 +878,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@newrelic/apollo-server-plugin@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@newrelic/apollo-server-plugin/-/apollo-server-plugin-3.0.0.tgz#a3dc64af370afce89f3473ff6885441c2e6bda2b"
+  integrity sha512-MqcMzc1vSFoaFdc0N5rufCKMTEVq+jmxgq+ThDiDr/V5yQ66TSsNcOTlZMZJe2qMzxRM3KWC6eMN4+enxsdTsw==
+
 "@newrelic/aws-sdk@^5.0.2":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@newrelic/aws-sdk/-/aws-sdk-5.0.4.tgz#283e46267e595ca93e2b64e8b2a37db87accca22"

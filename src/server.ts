@@ -7,7 +7,6 @@ import { container } from 'tsyringe'
 import { buildSchema } from 'type-graphql'
 
 import { formatError } from './application/middlewares/error-middleware'
-import { NewRelicPlugin } from './application/plugins/new-relic-plugin'
 import { CardResolver } from './application/resolvers/card-resolver'
 import { RabbitMQ } from './infra/messaging/rabbitmq'
 
@@ -20,7 +19,6 @@ export async function initServer() {
   const server = new ApolloServer({
     schema,
     formatError,
-    plugins: [new NewRelicPlugin()],
   })
 
   const port = process.env.APP_PORT ? +process.env.APP_PORT : 4000

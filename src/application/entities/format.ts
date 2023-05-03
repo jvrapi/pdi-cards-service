@@ -1,24 +1,26 @@
-export type FormatName =
-  | 'standard'
-  | 'future'
-  | 'historic'
-  | 'gladiator'
-  | 'pioneer'
-  | 'explorer'
-  | 'modern'
-  | 'legacy'
-  | 'pauper'
-  | 'vintage'
-  | 'penny'
-  | 'commander'
-  | 'brawl'
-  | 'historicbrawl'
-  | 'alchemy'
-  | 'paupercommander'
-  | 'duel'
-  | 'oldschool'
-  | 'premodern'
-
+export enum FormatName {
+  standard = 'standard',
+  future = 'future',
+  historic = 'historic',
+  gladiator = 'gladiator',
+  pioneer = 'pioneer',
+  explorer = 'explorer',
+  modern = 'modern',
+  legacy = 'legacy',
+  pauper = 'pauper',
+  vintage = 'vintage',
+  penny = 'penny',
+  commander = 'commander',
+  brawl = 'brawl',
+  historicbrawl = 'historicbrawl',
+  alchemy = 'alchemy',
+  paupercommander = 'paupercommander',
+  duel = 'duel',
+  oldschool = 'oldschool',
+  premodern = 'premodern',
+  oathbreaker = 'oathbreaker',
+  predh = 'predh',
+}
 interface FormatProps {
   format: FormatName
   isLegal?: boolean

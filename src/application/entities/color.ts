@@ -1,4 +1,10 @@
-export type ColorName = 'W' | 'B' | 'R' | 'U' | 'G'
+export enum ColorName {
+  W = 'W',
+  B = 'B',
+  R = 'R',
+  U = 'U',
+  G = 'G',
+}
 
 export class Color {
   private readonly color: ColorName

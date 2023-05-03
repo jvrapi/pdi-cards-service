@@ -1,7 +1,7 @@
 import { Card, type CardProps } from '@/application/entities/card'
-import { Color } from '@/application/entities/color'
-import { Format } from '@/application/entities/format'
-import { Version } from '@/application/entities/version'
+import { Color, ColorName } from '@/application/entities/color'
+import { Format, FormatName } from '@/application/entities/format'
+import { Version, VersionName } from '@/application/entities/version'
 
 export type Override = Partial<CardProps>
 export function makeCard(override: Override = {}) {
@@ -10,9 +10,9 @@ export function makeCard(override: Override = {}) {
     borderColor: 'border color example',
     cmc: 1,
     collectionId: '1',
-    colors: [new Color('B')],
-    formats: [new Format({ format: 'standard' })],
-    versions: [new Version('nonFoil')],
+    colors: [new Color(ColorName.B)],
+    formats: [new Format({ format: FormatName.standard })],
+    versions: [new Version(VersionName.nonFoil)],
     manaCost: 'mana cost example',
     effectText: 'effect text example',
     flavorText: 'flavor text example',

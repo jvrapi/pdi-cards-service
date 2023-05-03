@@ -27,6 +27,7 @@ export async function defaultValues(override?: DefaultValuesOverrideProps) {
   const setCreated = await prisma.set.create({
     data: prismaSet,
   })
+
   const prismaCard = PrismaCardsMapper.toPrisma(card, setCreated.id)
 
   const cardCreated = await prisma.card.create({
