@@ -47,9 +47,9 @@ model Card {
   isVariant        Boolean? @map("is_variant")
   isFoundInBooster Boolean? @map("is_found_in_booster")
   isStorySpotlight Boolean? @map("is_story_spotlight")
-  colors           String
-  formats          String
-  versions         String
+  colors           String?
+  formats          String?
+  versions         String?
   faceOfId         String?  @map("face_of_id") // id da "carta principal". Ou seja, ela é uma face de uma outra carta
   face             Card?    @relation("faces", fields: [faceOfId], references: [id])
   createdAt        DateTime @default(now()) @map("created_at")

@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client'
+import { Prisma, Set as PrismaSet } from '@prisma/client'
 
 import {
   Face,
@@ -32,6 +32,7 @@ export class PrismaMessagingRepository implements MessagingRepository {
               name: card.name,
               rarity: card.rarity,
               cmc: card.cmc ? new Prisma.Decimal(card.cmc) : null,
+              imageUri: card.imageUri,
               borderColor: card.borderColor,
               collectionId: card.collectionId,
               frame: card.frame,
@@ -84,5 +85,13 @@ export class PrismaMessagingRepository implements MessagingRepository {
     const sets = await prisma.set.findMany()
 
     return sets.map((set) => set.code)
+  }
+
+  async findSetById(setId: string): Promise<PrismaSet | null> {
+    return prisma.set.findUnique({
+      where: {
+        id: setId,
+      },
+    })
   }
 }

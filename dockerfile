@@ -1,24 +1,34 @@
-FROM node:lts as builder
+# step 1 - Build app
+FROM node:lts-alpine as builder
+
+LABEL stage="builder"
 
 WORKDIR /app
 
 COPY . .
 
-RUN mv .env.production .env
-
-RUN yarn install 
+RUN yarn
 
 RUN yarn build
 
-RUN rm -rf node_modules && \
-  NODE_ENV=production yarn install 
+RUN mv .env.production .env
 
-FROM node:lts
+RUN rm -rf node_modules
+
+RUN yarn --production
+
+# step 2 - Run build app
+FROM node:lts-alpine
+
+LABEL stage="run app"
 
 WORKDIR /app
 
-COPY --from=builder /app  .
+COPY --from=builder /app/dist  /app/dist
+COPY --from=builder /app/.env  /app/
+COPY --from=builder /app/node_modules  /app/node_modules
+
 
 EXPOSE 4000
 
-CMD [ "yarn", "start" ]
+CMD [ "node", "dist/index.js" ]

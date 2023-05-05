@@ -66,6 +66,9 @@ export class InsertNewDataUseCase {
   ) {}
 
   async execute(set: Set) {
-    await this.messageRepository.updateData(set)
+    const setAlreadyExists = await this.messageRepository.findSetById(set.id)
+    if (!setAlreadyExists) {
+      await this.messageRepository.updateData(set)
+    }
   }
 }

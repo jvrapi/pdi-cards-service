@@ -1,3 +1,4 @@
+import { Set as PrismaSet } from '@prisma/client'
 export interface Face {
   id: string
   imageUri: string
@@ -57,4 +58,5 @@ export interface Set {
 export interface MessagingRepository {
   getAllSetsCode(): Promise<string[]>
   updateData(set: Set): Promise<void>
+  findSetById(setId: string): Promise<PrismaSet | null>
 }
